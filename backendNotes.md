@@ -19,12 +19,12 @@ Task:
    - Render smaller map with selected location (stretch goal)
    - Clicking on marker should display location info
 
-  thursday June 30th //
+  Thursday June 30th //
 
   Tasks:
 
   Han & Tristan
-  [] 1. Finalize the Database design
+  [X] 1. Finalize the Database design
    - Need a User Schema (Unique username, password, email)
    - Location will be used for both Host and Client
    - Need a Booking Schema (Client (and/or Host?, Date of booking, location), password, email)
