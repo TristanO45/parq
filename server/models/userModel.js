@@ -1,5 +1,8 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
+const jwt = require("jsonwebtoken");
+const passwordComplexity = require("joi-password-complexity");
+const Joi = require("joi");
 
 // Client and Host Model
 const userSchema = new Schema({
@@ -24,6 +27,21 @@ const locationSchema = new Schema({
   size: { type: Number, required: true },
 });
 
+userSchema.methods.generateAuthToken = function () {
+  const token = jwt.sign({ _id: this._id }, process.env.JWTPRIVATEKEY, {
+    expiresIn: "7d",
+  });
+  return token;
+};
+
+const validate = (data) => {
+  const schema = Joi.object({
+    username: Joi.string().required().label("username"),
+    password: passwordComplexity().required().label("password"),
+  });
+  return schema.validate(data);
+};
+
 const User = mongoose.model("user", userSchema);
 const Booking = mongoose.model("booking", bookingSchema);
 const Location = mongoose.model("locations", LocationSchema);
@@ -32,4 +50,5 @@ module.exports = {
   Location,
   User,
   Booking,
+  validate
 };
