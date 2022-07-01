@@ -2,17 +2,38 @@ Wednesday June 29th //
 
 Task:
 
-1. Come up with Database design
+[] 1. Come up with Database design
    - Need a User Schema (Unique username, password, email)
-     - Location will be used for both Host and Client
+   - Location will be used for both Host and Client
    - Need a Booking Schema (Client (and/or Host?, Date of booking, location), password, email)
    - Need a Location Schema (Address, Unique Username, price, parking options)
 
-2. API for map and how to use it.
+[X] 2. Setup the Database using atlas
+
+[X] 3. Connect to MongoDB(mongoose)
+
+[]  4. Set up server to test db users
+
+[] 5. Research API for map and how to use it.
    - Render large map and place marker for each location in DB (homepage)
    - Render smaller map with selected location (stretch goal)
    - Clicking on marker should display location info
 
-3. Setup the Database using atlas (done)
-4. Connect to MongoDB(mongoose) (done)
-5. Set up server to test db users
+  thursday June 30th //
+
+  Tasks:
+
+  Han & Tristan
+  [] 1. Finalize the Database design
+   - Need a User Schema (Unique username, password, email)
+   - Location will be used for both Host and Client
+   - Need a Booking Schema (Client (and/or Host?, Date of booking, location), password, email)
+   - Need a Location Schema (Address, Unique Username, price, parking options)
+  
+  Han & Tristan
+  [] 1. Create location controller
+  [] 2. Consider Booking controller
+
+  Jake -
+   1. Create user signup/login (Controllers, Routers)
+   2. Setup JWT, Bcrypt, (Sessions?)
