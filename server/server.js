@@ -22,10 +22,18 @@ mongoose
     console.error("Error connecting to Mongo", err);
   });
 
-/** 
-require routers here:
-define route handlers here:
-*/
+// require routers here:
+const apiRouter = require("./routes/api");
+// define route handlers here:
+app.use("/api", apiRouter);
+
+// statically serve everything in the build folder on the route '/build'
+app.use("/build", express.static(path.join(__dirname, "../build")));
+
+// serve index.html on the route '/'
+app.get("/", (req, res) => {
+  return res.status(200).sendFile(path.join(__dirname, "../client/index.html"));
+});
 
 // catch-all route handler for any requests to an unknown route
 app.use((req, res) => {
@@ -44,6 +52,7 @@ app.use((err, req, res, next) => {
   return res.status(errorObj.status).json(errorObj.message);
 });
 
+// Start Server
 app.listen(PORT, () => {
   console.log(`Listening on port ${PORT}...`);
 });

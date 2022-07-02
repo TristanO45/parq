@@ -35,5 +35,9 @@ Task:
   [] 2. Consider Booking controller
 
   Jake -
-   1. Create user signup/login (Controllers, Routers)
-   2. Setup JWT, Bcrypt, (Sessions?)
+   1. Create user signup/login (Control
+   
+   Saturday July 2nd //
+
+   Han & Tristan
+   [] 1. Create middleware for geocoding
