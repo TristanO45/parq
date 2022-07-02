@@ -4,6 +4,10 @@ const { User } = require("../models/userModel");
 const Joi = require("joi");
 const bcrypt = require("bcrypt");
 
+router.post('/', (req, res) => {
+
+})
+
 router.post("/", async (req, res) => {
     try {
       const { error } = validate(req.body);
@@ -32,9 +36,9 @@ router.post("/", async (req, res) => {
   });
   
   const validate = (data) => {
-    const schema = Joi.object({
-      username: Joi.string().required().label("username"),
-      password: Joi.string().required().label("password"),
+    const schema = Joi.object({      
+      username: Joi.string().required().label("Username"),
+      password: Joi.string().required().label("Password"),
     });
     return schema.validate(data);
   };

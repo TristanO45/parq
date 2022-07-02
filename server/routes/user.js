@@ -2,8 +2,6 @@ const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcrypt");
 
-// const userController = require("../controllers/userController");
-
 const { User, validate } = require("../models/userModel");
 
 router.post("/", async (req, res) => {
@@ -30,7 +28,10 @@ router.post("/", async (req, res) => {
   }
 });
 
-// router.get("/:username", userController.getUser);
-// router.delete("/:username", userController.deleteUser);
+router.get('/:username', (request, response) => {
+  User.findOne({username: request.params.username})
+  .then(data => response.json(data))
+  .catch(error => response.json(error))
+});
 
 module.exports = router;

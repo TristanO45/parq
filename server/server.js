@@ -22,10 +22,13 @@ mongoose
     console.error("Error connecting to Mongo", err);
   });
 
-/** 
-require routers here:
-define route handlers here:
-*/
+//require routers here:
+const userRouter = require("../server/routes/user");
+const authRouter = require("../server/routes/auth");
+
+//define route handlers here:
+app.use("/api/users", userRouter);
+app.use("/api/auth", authRouter);
 
 // catch-all route handler for any requests to an unknown route
 app.use((req, res) => {
