@@ -17,13 +17,19 @@ router.get('/booking', apiController.getBooking, (req, res, next) => {
 // get request for all locations
 
 router.get('/all', apiController.getAllLocation, (req, res, next) => {
-  return res.status.apply(200).json(res.locals.location)
+  return res.status(200).json(res.locals.location)
 })
-
 
 
 // post requests for new location
 
+router.post('/location', apiController.createLocation, (req, res, next) => {
+  return res.status(200).json(res.locals.newLocation)
+})
+
 // post rquests for new bookings
 
+router.post('/booking', apiController.createBooking, (req,res,next) => {
+  return res.status(200).json(res.locals.booking);
+})
 module.exports = router;

@@ -84,7 +84,6 @@ apiController.getBooking = async (req, res, next) => {
 apiController.getLocation = (req, res, next) => {
   //get address entered by user from request
   const { address } = req.body; // Actual location in res TBD
-  console.log(address);
   Location.findOne({ address }, (err, docs) => {
     if (err) {
       return next({
@@ -105,7 +104,6 @@ apiController.getAllLocation = (req, res, next) => {
   //get all locations
   console.log("inside controller");
   Location.find({}, (err, docs) => {
-    console.log(docs);
     if (err) {
       return next({
         log: `apiController.getAllLocation error :${err}`,
@@ -116,7 +114,6 @@ apiController.getAllLocation = (req, res, next) => {
     }
 
     res.locals.location = docs;
-    console.log(res.locals.location);
     return next();
   });
 };
