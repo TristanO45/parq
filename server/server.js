@@ -25,11 +25,9 @@ mongoose
 // require routers here:
 const apiRouter = require("./routes/api");
 const userRouter = require("../server/routes/user");
-const authRouter = require("../server/routes/auth");
 
 // define route handlers here:
 app.use("/api/users", userRouter);
-app.use("/api/auth", authRouter);
 app.use("/api", apiRouter);
 
 // statically serve everything in the build folder on the route '/build'
