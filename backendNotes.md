@@ -55,6 +55,7 @@ Tristan's research notes:
 
 - Make axios request to the Google API url
 - use object to set params which will be the address (given to us by the client input) and the API Key. Example below
+- pass the google request controller as middleware for required routes.
 
 googleRequestController.getBusinesses = (req, res, next) => {
 try {
