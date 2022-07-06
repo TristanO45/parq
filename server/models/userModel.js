@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-const jwt = require("jsonwebtoken");
 const Joi = require("joi");
 const passwordComplexity = require("joi-password-complexity");
 
@@ -10,7 +9,7 @@ const userSchema = new Schema({
   lastName: { type: String, required: true },
   username: { type: String, required: true, unique: true },
   password: { type: String, required: true },
-  token: { type: String },
+  // token: { type: String },
 });
 
 const bookingSchema = new Schema({
@@ -29,22 +28,22 @@ const locationSchema = new Schema({
   coordinates: { lat: Number, lng: Number },
 });
 
-userSchema.methods.generateAuthToken = function () {
-  const token = jwt.sign({ _id: this._id }, process.env.JWTPRIVATEKEY, {
-    expiresIn: "7d",
-  });
-  return token;
-};
+// userSchema.methods.generateAuthToken = function () {
+//   const token = jwt.sign({ _id: this._id }, process.env.JWTPRIVATEKEY, {
+//     expiresIn: "7d",
+//   });
+//   return token;
+// };
 
-const validate = (data) => {
-  const schema = Joi.object({
-    firstName: Joi.string().required().label("First Name"),
-    lastName: Joi.string().required().label("Last Name"),
-    username: Joi.string().required().label("Username"),
-    password: passwordComplexity().required().label("Password"),
-  });
-  return schema.validate(data);
-};
+// const validate = (data) => {
+//   const schema = Joi.object({
+//     firstName: Joi.string().required().label("First Name"),
+//     lastName: Joi.string().required().label("Last Name"),
+//     username: Joi.string().required().label("Username"),
+//     password: passwordComplexity().required().label("Password"),
+//   });
+//   return schema.validate(data);
+// };
 
 const User = mongoose.model("user", userSchema);
 const Booking = mongoose.model("booking", bookingSchema);
@@ -54,5 +53,4 @@ module.exports = {
   Location,
   User,
   Booking,
-  validate,
 };

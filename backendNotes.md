@@ -57,7 +57,7 @@ Tristan's research notes:
 - use object to set params which will be the address (given to us by the client input) and the API Key. Example below
 - pass the google request controller as middleware for required routes.
 
-googleRequestController.getBusinesses = (req, res, next) => {
+googleRequestController.mapLocation = (req, res, next) => {
 try {
 const { lat, lng, address } = req.query;
 axios
@@ -84,3 +84,11 @@ message: {
 err: `Error occurred in "" err log: ${err}`,
 },
 });
+
+Tuesday July 5th //
+
+[] 1. Refactor authentication logic for JWT stored with mongoDB
+[] 2. Make HTTP request with maps API (use code above ^^^)
+
+Tristan - Work with API fetch request
+Jake - Work on Auth logic

@@ -4,10 +4,12 @@ const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const app = express();
 const PORT = 3000;
+const cookieParser = require('cookie-parser');
 
 dotenv.config();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
 
 // Mongo Connection
 mongoose
@@ -24,7 +26,7 @@ mongoose
 
 // require routers here:
 const apiRouter = require("./routes/api");
-const userRouter = require("../server/routes/user");
+const userRouter = require("./routes/user");
 
 // define route handlers here:
 app.use("/api/users", userRouter);

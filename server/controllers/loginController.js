@@ -8,7 +8,7 @@ const loginController = {};
 loginController.loginUser = async (req, res, next) => {
   try {
     const { username } = req.body;
-    const { error } = validate(req.body);
+    // const { error } = validate(req.body);
     if (error)
       return res.status(400).send({ message: error.details[0].message });
 
@@ -26,34 +26,35 @@ loginController.loginUser = async (req, res, next) => {
       return res.status(401).send({ message: "Invalid username or password" });
 
     return next();
+
   } catch (error) {
     res.status(500).send({ message: "Internal Server Error" });
   }
 };
 
-loginController.createToken = (req, res, next) => {
-  const { username } = req.body;
-  const token = username.generateAuthToken();
-  console.log("Checking Token:", token)
-  User.updateOne({ username }, { token }, (err, docs) => {
-    if (err) return next(err);
-    res.locals.data = token;
-    console.log("res.locals.data:", res.locals.data)
-    return next();
-  });
-};
+// loginController.createToken = (req, res, next) => {
+//   const { username } = req.body;
+//   const token = username.generateAuthToken();
+//   console.log("Checking Token:", token)
+//   User.updateOne({ username }, { token }, (err, docs) => {
+//     if (err) return next(err);
+//     res.locals.data = token;
+//     console.log("res.locals.data:", res.locals.data)
+//     return next();
+//   });
+// };
 
 // loginController.isLoggedIn = (req, res, next) => {
 //     const {username} = req.body
 //     User.findOne({username})
 // };
 
-const validate = (data) => {
-  const schema = Joi.object({
-    username: Joi.string().required().label("Username"),
-    password: Joi.string().required().label("Password"),
-  });
-  return schema.validate(data);
-};
+// const validate = (data) => {
+//   const schema = Joi.object({
+//     username: Joi.string().required().label("Username"),
+//     password: Joi.string().required().label("Password"),
+//   });
+//   return schema.validate(data);
+// };
 
 module.exports = loginController;

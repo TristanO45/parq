@@ -7,13 +7,20 @@ apiController.createLocation = async (req, res, next) => {
   // When host adds listing, create new location in the db
   try {
     const { hostName, address, price, options, size } = req.body;
+    const coordinates = res.locals.data;
+    console.log(coordinates);
     //get coords for api
-    await Location.create({ hostName, address, price, options, size }).then(
-      (locationSaved) => {
-        res.locals.newLocation = locationSaved;
-        return next();
-      }
-    );
+    await Location.create({
+      hostName,
+      address,
+      price,
+      options,
+      size,
+      coordinates,
+    }).then((locationSaved) => {
+      res.locals.newLocation = locationSaved;
+      return next();
+    });
   } catch (err) {
     return next({
       log: `apiController.createLocation: Error: ${err}`,
@@ -102,7 +109,7 @@ apiController.getLocation = (req, res, next) => {
 //"get all locations" controller
 apiController.getAllLocation = (req, res, next) => {
   //get all locations
-  console.log("inside controller");
+  console.log("inside getAll controller");
   Location.find({}, (err, docs) => {
     if (err) {
       return next({
