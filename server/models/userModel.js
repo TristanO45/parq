@@ -1,7 +1,5 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-const Joi = require("joi");
-const passwordComplexity = require("joi-password-complexity");
 
 // Client and Host Model
 const userSchema = new Schema({
@@ -33,16 +31,6 @@ const locationSchema = new Schema({
 //     expiresIn: "7d",
 //   });
 //   return token;
-// };
-
-// const validate = (data) => {
-//   const schema = Joi.object({
-//     firstName: Joi.string().required().label("First Name"),
-//     lastName: Joi.string().required().label("Last Name"),
-//     username: Joi.string().required().label("Username"),
-//     password: passwordComplexity().required().label("Password"),
-//   });
-//   return schema.validate(data);
 // };
 
 const User = mongoose.model("user", userSchema);

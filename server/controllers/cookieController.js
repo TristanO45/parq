@@ -6,9 +6,9 @@ const jwt = require("jsonwebtoken");
 
 cookieController = {};
 
-cookieController.setCookie = async (req, res, next) => {
+cookieController.setCookie =  (req, res, next) => {
   const { username } = req.body;
-  const token = await generateAuthToken(username);
+  const token = generateAuthToken(username);
   res.cookie("access_token", token, {
     httpOnly: true,
   });
@@ -19,34 +19,34 @@ cookieController.setCookie = async (req, res, next) => {
 
 cookieController.verifyCookie = (req, res, next) => {
   const token = req.cookies.access_token;
+  console.log(token);
   if (!token) {
     return res.status(403).send("Cannot verify user");
   }
   try {
     const data = jwt.verify(token, process.env.JWTPRIVATEKEY);
-    req.userId = data.id;
+    console.log(data);
+    // req.userId = data.id;
     return next();
-  } catch {
-    return res.status(403).send("Cannot authorize user");
+  } catch (err) {
+    return res.status(403).send("Cannot authorize user", err);
   }
 };
 
 //clear cookie on logout:
 cookieController.logout = (req, res, next) => {
-  //logout route to clear the cookie:
-  // res.status(202).clearCookie('access-token').send('cookie cleared')
   res.clearCookie("access_token");
   return next();
 };
 
-//example for protected route to get the data from jwt:
+//example for protected route to get the data from jwt (will need to use use username):
 // app.get("/protected", verifyCookie, (req, res) => {
 //   return res.json({ user: { id: req.userId} });
 //  });
 
 function generateAuthToken(username) {
-  const token = jwt.sign({ username }, process.env.JWTPRIVATEKEY, {
-    expiresIn: "7d",
+  const token = jwt.sign({ username: username }, process.env.JWTPRIVATEKEY, {
+    expiresIn: "360",
   });
   return token;
 }

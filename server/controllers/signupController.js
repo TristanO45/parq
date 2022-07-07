@@ -1,16 +1,11 @@
 const express = require("express");
 const bcrypt = require("bcrypt");
-//validate
 const { User } = require("../models/userModel");
 
 const signupController = {};
 
 signupController.signUp = async (req, res, next) => {
   try {
-    // const { error } = validate(req.body);
-    // if (error)
-    //   return res.status(400).send({ message: error.details[0].message });
-
     // check if username already exists
     const user = await User.findOne({ username: req.body.username });
     console.log('user:',user);

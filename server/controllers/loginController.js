@@ -8,15 +8,10 @@ const loginController = {};
 loginController.loginUser = async (req, res, next) => {
   try {
     const { username } = req.body;
-    // const { error } = validate(req.body);
-    if (error)
-      return res.status(400).send({ message: error.details[0].message });
-
     //verify username
     const user = await User.findOne({ username });
     if (!user)
       return res.status(401).send({ message: "Invalid username or password" });
-
     //verify password
     const validPassword = await bcrypt.compare(
       req.body.password,
@@ -26,7 +21,6 @@ loginController.loginUser = async (req, res, next) => {
       return res.status(401).send({ message: "Invalid username or password" });
 
     return next();
-
   } catch (error) {
     res.status(500).send({ message: "Internal Server Error" });
   }
@@ -47,14 +41,6 @@ loginController.loginUser = async (req, res, next) => {
 // loginController.isLoggedIn = (req, res, next) => {
 //     const {username} = req.body
 //     User.findOne({username})
-// };
-
-// const validate = (data) => {
-//   const schema = Joi.object({
-//     username: Joi.string().required().label("Username"),
-//     password: Joi.string().required().label("Password"),
-//   });
-//   return schema.validate(data);
 // };
 
 module.exports = loginController;

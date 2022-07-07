@@ -87,8 +87,15 @@ err: `Error occurred in "" err log: ${err}`,
 
 Tuesday July 5th //
 
-[] 1. Refactor authentication logic for JWT stored with mongoDB
-[] 2. Make HTTP request with maps API (use code above ^^^)
+[X] 1. Refactor authentication logic for JWT stored with mongoDB
+[X] 2. Make HTTP request with maps API (use code above ^^^)
 
 Tristan - Work with API fetch request
 Jake - Work on Auth logic
+
+Wednesday July 6th //
+
+Auth has been tested and is ready to connect with frontend
+HTTP request made to maps API successfully
+
+[] 1. organize controllers to use API and DB correctly

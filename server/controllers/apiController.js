@@ -2,7 +2,7 @@ const { Location, Booking } = require("../models/userModel");
 
 const apiController = {};
 
-// "Create location" controller
+// "Create location" controller - Used for adding a listing
 apiController.createLocation = async (req, res, next) => {
   // When host adds listing, create new location in the db
   try {
@@ -29,6 +29,49 @@ apiController.createLocation = async (req, res, next) => {
       },
     });
   }
+};
+
+// "Get location data" controller (singular)
+// based on address, return location data
+apiController.getLocation = (req, res, next) => {
+  //get address entered by user from request
+  const { address } = req.body; // Actual location in res TBD
+  Location.findOne({ address }, (err, docs) => {
+    if (err) {
+      return next({
+        log: `apiController.getLocation error :${err}`,
+        message: {
+          err: "Error occured in getLocation",
+        },
+      });
+    }
+    res.locals.location = docs;
+    console.log(docs);
+    return next();
+  });
+};
+
+//"get all locations" controller
+apiController.getAllLocation = (req, res, next) => {
+  //get all locations
+  Location.find({}, (err, listings) => {
+    if (err) {
+      return next({
+        log: `apiController.getAllLocation error :${err}`,
+        message: {
+          err: "Error occured in getAllLocation",
+        },
+      });
+    }
+    res.locals.result = {
+      lng: res.locals.data.lng,
+      lat: res.locals.data.lat,
+      listings,
+    };
+    console.log(res.locals.result);
+    // res.locals.location = docs;
+    return next();
+  });
 };
 // const bookingSchema = new Schema({
 //   clientUsername: { type: String, required: true },
@@ -65,14 +108,11 @@ apiController.createBooking = (req, res, next) => {
 // "Get booking" controller
 apiController.getBooking = async (req, res, next) => {
   // find booking that was stored in database
-  const { clientUsername } = req.body;
-  await Booking.findOne({ clientUsername }).then((result) => {
+  const { username } = req.body;
+  await Booking.findOne({ clientUsername: username }).then((result) => {
     if (result) {
       console.log("Booking found in database!");
-      res.locals.booking = {
-        message: "Confirmed Booking",
-        verified: true,
-      };
+      res.locals.booking = result;
       return next();
     } else {
       console.log("Booking not found in database");
@@ -83,45 +123,6 @@ apiController.getBooking = async (req, res, next) => {
         },
       });
     }
-  });
-};
-
-// "Get location data" controller (singular)
-// based on address, return location data
-apiController.getLocation = (req, res, next) => {
-  //get address entered by user from request
-  const { address } = req.body; // Actual location in res TBD
-  Location.findOne({ address }, (err, docs) => {
-    if (err) {
-      return next({
-        log: `apiController.getLocation error :${err}`,
-        message: {
-          err: "Error occured in getLocation",
-        },
-      });
-    }
-    res.locals.location = docs;
-    console.log(docs);
-    return next();
-  });
-};
-
-//"get all locations" controller
-apiController.getAllLocation = (req, res, next) => {
-  //get all locations
-  console.log("inside getAll controller");
-  Location.find({}, (err, docs) => {
-    if (err) {
-      return next({
-        log: `apiController.getAllLocation error :${err}`,
-        message: {
-          err: "Error occured in getAllLocation",
-        },
-      });
-    }
-
-    res.locals.location = docs;
-    return next();
   });
 };
 
