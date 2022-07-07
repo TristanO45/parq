@@ -192,7 +192,7 @@ class Dashboard extends Component {
             className="leftMap"
             style={{ width: "49%", height: "100%", float: "left" }}
           >
-            <Map className="map" /> 
+            <Map className="map" />
           </div>
           <div
             className="rightTiles"

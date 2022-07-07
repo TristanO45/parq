@@ -1,14 +1,14 @@
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require("path");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
-  entry: './client/index.js',
+  entry: "./client/index.js",
   output: {
-    path: path.resolve(__dirname, 'build'),
-    publicPath: '/',
-    filename: 'bundle.js',
+    path: path.resolve(__dirname, "build"),
+    publicPath: "/",
+    filename: "bundle.js",
   },
-  mode: 'development',
+  mode: "development",
   module: {
     rules: [
       {
@@ -37,17 +37,29 @@ module.exports = {
     },
     ]
   },
-  plugins: [new HtmlWebpackPlugin({
-    template: './client/index.html',
-  })],
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: "./client/index.html",
+    }),
+  ],
   devServer: {
     port: 8080,
     static: {
-      directory: path.resolve(__dirname, 'build'),
-      publicPath: '/',
+      directory: path.resolve(__dirname, "build"),
+      publicPath: "/",
     },
     open: true,
     hot: true,
-    liveReload: true
-  },
+    liveReload: true,
+    proxy: {
+      "/api/**": {
+        target: "http://localhost:3000/",
+        secure: false,
+      },
+      "/assets/**": {
+        target: "http://localhost:3000/",
+        secure: false,
+      },
+    },
+  }
 };
