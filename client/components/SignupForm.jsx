@@ -32,6 +32,7 @@ export default function SignupForm() {
           defaultValue=""
         />
         <TextField
+          required
           id="outlined-password-input"
           label="Password"
           type="password"

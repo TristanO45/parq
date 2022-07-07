@@ -52,6 +52,7 @@ BootstrapDialogTitle.propTypes = {
 
 export default function SignupPop() {
   const [open, setOpen] = useState(false);
+  // const [user, setUser] = useState()
 
   const handleClickOpen = () => {
     setOpen(true);
