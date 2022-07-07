@@ -10,6 +10,7 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import InputBase from "@mui/material/InputBase";
 import SearchIcon from "@mui/icons-material/Search";
+import Map from "./Map.jsx";
 
 class Dashboard extends Component {
   constructor(props) {
@@ -59,8 +60,8 @@ class Dashboard extends Component {
     }));
 
     return (
-      <div style={{display: "flex", flexDirection: "column"}}>
-        <div className="navBar" style={{height: "70px"}} sx={{ flexGrow: 1 }} >
+      <div style={{ display: "flex", flexDirection: "column" }}>
+        <div className="navBar" style={{ height: "70px" }} sx={{ flexGrow: 1 }}>
           <Box sx={{ flexGrow: 1 }}>
             <Toolbar>
               <Button color="inherit" sx={{ flexGrow: 1 }}>
@@ -70,7 +71,7 @@ class Dashboard extends Component {
                   sx={{
                     textTransform: "none",
                     fontWeight: "light",
-                    color: "#36454F"
+                    color: "#36454F",
                   }}
                 >
                   book
@@ -83,7 +84,7 @@ class Dashboard extends Component {
                   sx={{
                     textTransform: "none",
                     fontWeight: "light",
-                    color: "#36454F"
+                    color: "#36454F",
                   }}
                 >
                   host
@@ -99,7 +100,7 @@ class Dashboard extends Component {
                   sx={{
                     textTransform: "none",
                     fontWeight: "light",
-                    color: "#36454F"
+                    color: "#36454F",
                   }}
                 >
                   about
@@ -112,7 +113,7 @@ class Dashboard extends Component {
                   sx={{
                     textTransform: "none",
                     fontWeight: "light",
-                    color: "#36454F"
+                    color: "#36454F",
                   }}
                 >
                   sign in
@@ -121,11 +122,18 @@ class Dashboard extends Component {
             </Toolbar>
           </Box>
         </div>
-        <div className="filterBar" style={{height: "40px"}} sx={{ flexGrow: 1 }}>
-          <div className="leftFilter" style={{ width: "30%" , float: "left" , marginLeft: "10px"}}>
+        <div
+          className="filterBar"
+          style={{ height: "40px" }}
+          sx={{ flexGrow: 1 }}
+        >
+          <div
+            className="leftFilter"
+            style={{ width: "30%", float: "left", marginLeft: "10px" }}
+          >
             <Search sx={{ border: ".75px solid #000000" }}>
               <SearchIconWrapper>
-                <SearchIcon style={{ color: "#BBD1D1" , opacity: "100%" }} />
+                <SearchIcon style={{ color: "#BBD1D1", opacity: "100%" }} />
               </SearchIconWrapper>
               <StyledInputBase
                 placeholder="city, state, or zip"
@@ -133,66 +141,63 @@ class Dashboard extends Component {
               />
             </Search>
           </div>
-          
+
           <div className="rightFilter" style={{ width: "60%", float: "right" }}>
-          <Button
-            className="filterPrice"
-            color="inherit"
-            sx={{ width: 10}}
-          >
-            <Typography
-              // variant="h6"
-              component="div"
-              sx={{
-                textTransform: "none",
-                fontWeight: "light",
-                color: "#36454F",
-              }}
-            >
-              price
-            </Typography>
-          </Button>
-          <Button
-            className="filterPrice"
-            color="inherit"
-            sx={{ width: 10}}
-          >
-            <Typography
-              // variant="h6"
-              component="div"
-              sx={{
-                textTransform: "none",
-                fontWeight: "light",
-                color: "#36454F"
-              }}
-            >
-              size
-            </Typography>
-          </Button>
-          <Button
-            className="filterPrice"
-            color="inherit"
-            sx={{ width: 10}}
-          >
-            <Typography
-              // variant="h6"
-              component="div"
-              sx={{
-                textTransform: "none",
-                fontWeight: "light",
-                color: "#36454F"
-              }}
-            >
-              type
-            </Typography>
-          </Button>
+            <Button className="filterPrice" color="inherit" sx={{ width: 10 }}>
+              <Typography
+                // variant="h6"
+                component="div"
+                sx={{
+                  textTransform: "none",
+                  fontWeight: "light",
+                  color: "#36454F",
+                }}
+              >
+                price
+              </Typography>
+            </Button>
+            <Button className="filterPrice" color="inherit" sx={{ width: 10 }}>
+              <Typography
+                // variant="h6"
+                component="div"
+                sx={{
+                  textTransform: "none",
+                  fontWeight: "light",
+                  color: "#36454F",
+                }}
+              >
+                size
+              </Typography>
+            </Button>
+            <Button className="filterPrice" color="inherit" sx={{ width: 10 }}>
+              <Typography
+                // variant="h6"
+                component="div"
+                sx={{
+                  textTransform: "none",
+                  fontWeight: "light",
+                  color: "#36454F",
+                }}
+              >
+                type
+              </Typography>
+            </Button>
           </div>
         </div>
-        <div className="mapAndTiles" style={{height: `calc( 100vh - 145px )`}} >
-        <div className="leftMap" style={{ width: "49%", height: "100%", float: "left" }}>
-          
-        </div>
-        <div className="rightTiles" style={{ width: "50%", height: "100%", float: "right" }}></div>
+        <div
+          className="mapAndTiles"
+          style={{ height: `calc( 100vh - 145px )` }}
+        >
+          <div
+            className="leftMap"
+            style={{ width: "49%", height: "100%", float: "left" }}
+          >
+            <Map className="map" /> 
+          </div>
+          <div
+            className="rightTiles"
+            style={{ width: "50%", height: "100%", float: "right" }}
+          ></div>
         </div>
       </div>
     );

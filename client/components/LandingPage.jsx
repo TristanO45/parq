@@ -4,7 +4,9 @@ import { styled, alpha } from "@mui/material/styles";
 import { Link } from "react-router-dom";
 import "../styles.scss";
 import logo from "../assets/blueParq.png";
-import topoBackground from "../assets/topoBackground.png"
+import topoBackground from "../assets/topoBackground.png";
+import bookArchway from "../assets/book archway.png";
+import hostArchway from "../assets/host archway.png";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
@@ -60,8 +62,8 @@ class LandingPage extends Component {
     }));
 
     return (
-      <div style={{display: "flex", flexDirection: "column"}}>
-        <div className="navBar" style={{height: "70px"}} sx={{ flexGrow: 1 }} >
+      <div style={{ display: "flex", flexDirection: "column" }}>
+        <div className="navBar" style={{ height: "70px" }} sx={{ flexGrow: 1 }}>
           <Box sx={{ flexGrow: 1 }}>
             <Toolbar>
               <Button color="inherit" sx={{ flexGrow: 1 }}>
@@ -71,7 +73,7 @@ class LandingPage extends Component {
                   sx={{
                     textTransform: "none",
                     fontWeight: "light",
-                    color: "#36454F"
+                    color: "#36454F",
                   }}
                 >
                   book
@@ -84,7 +86,7 @@ class LandingPage extends Component {
                   sx={{
                     textTransform: "none",
                     fontWeight: "light",
-                    color: "#36454F"
+                    color: "#36454F",
                   }}
                 >
                   host
@@ -100,7 +102,7 @@ class LandingPage extends Component {
                   sx={{
                     textTransform: "none",
                     fontWeight: "light",
-                    color: "#36454F"
+                    color: "#36454F",
                   }}
                 >
                   about
@@ -113,7 +115,7 @@ class LandingPage extends Component {
                   sx={{
                     textTransform: "none",
                     fontWeight: "light",
-                    color: "#36454F"
+                    color: "#36454F",
                   }}
                 >
                   sign in
@@ -123,24 +125,34 @@ class LandingPage extends Component {
           </Box>
         </div>
 
-        <div className="topoSearch" style={{height: "400px" }}>
-           <img className='topo' src={topoBackground} width="100%"></img>
-           <div className="landingSearch">
-           <Search sx={{ border: ".75px solid #000000" }}>
+        <div className="topoSearch" style={{ height: "300px" }}>
+          <img className="topo" src={topoBackground} width="100%"></img>
+          <div className="landingSearch">
+            <Search sx={{ border: ".75px solid #000000" }}>
               <SearchIconWrapper>
-                <SearchIcon style={{ color: "#BBD1D1" , opacity: "100%" }} />
+                <SearchIcon style={{ color: "#BBD1D1", opacity: "100%" }} />
               </SearchIconWrapper>
               <StyledInputBase
                 placeholder="city, state, or zip"
                 inputProps={{ "aria-label": "search" }}
               />
             </Search>
-           </div>
+          </div>
         </div>
 
-        <div className="archways" style={{height: `calc( 100vh - 490px)`}} >
-        <div className="leftArch" style={{ width: "49%", height: "100%", float: "left" }}></div>
-        <div className="rightArch" style={{ width: "50%", height: "100%", float: "right" }}></div>
+        <div className="archways" style={{ height: `calc( 100vh - 390px)` }}>
+          <div
+            className="leftArch"
+            style={{ width: "49%", height: "100%", float: "left" }}
+          >
+            <img className="archway" src={bookArchway} width="100%"></img>
+          </div>
+          <div
+            className="rightArch"
+            style={{ width: "50%", height: "100%", float: "right" }}
+          >
+            <img className="archway" src={hostArchway} width="100%"></img>
+          </div>
         </div>
       </div>
     );

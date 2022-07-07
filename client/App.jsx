@@ -1,3 +1,4 @@
+import { Map } from "@mui/icons-material";
 import React, { Component } from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Dashboard from "./components/Dashboard.jsx";
@@ -10,8 +11,8 @@ const App = (props) => {
       <main>
         <Router>
           <Switch>
-            <Route exact path="/" component={LandingPage} />
-            {/* <Route exact path="/" component={Dashboard} /> */}
+            {/* <Route exact path="/" component={LandingPage} /> */}
+            <Route exact path="/" component={Dashboard} />
           </Switch>
         </Router>
       </main>
