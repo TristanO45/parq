@@ -1,6 +1,4 @@
 import * as React from "react";
-import { Component } from "react";
-import { styled, alpha } from "@mui/material/styles";
 import { Link } from "react-router-dom";
 import "../styles.scss";
 import logo from "../assets/blueParq.png";
@@ -11,55 +9,80 @@ import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
-import InputBase from "@mui/material/InputBase";
+import { useEffect, useState } from "react";
+import { makeStyles } from "@material-ui/core";
 import SearchIcon from "@mui/icons-material/Search";
+import InputAdornment from '@material-ui/core/InputAdornment';
+import TextField from "@mui/material/TextField";
 
-class LandingPage extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
 
-  render() {
-    const Search = styled("div")(({ theme }) => ({
-      position: "relative",
-      borderRadius: "15px",
-      backgroundColor: alpha(theme.palette.common.white, 1),
-      "&:hover": {
-        backgroundColor: alpha(theme.palette.common.white, 1),
-      },
-      marginRight: theme.spacing(2),
-      marginLeft: 0,
-      width: "100%",
-      [theme.breakpoints.up("sm")]: {
-        marginLeft: theme.spacing(3),
-        width: "auto",
-      },
-    }));
 
-    const SearchIconWrapper = styled("div")(({ theme }) => ({
-      padding: theme.spacing(0, 2),
-      height: "100%",
-      position: "absolute",
-      pointerEvents: "none",
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-    }));
+export default function LandingPage() {
 
-    const StyledInputBase = styled(InputBase)(({ theme }) => ({
-      color: "inherit",
-      "& .MuiInputBase-input": {
-        padding: theme.spacing(1, 1, 1, 0),
-        // vertical padding + font size from searchIcon
-        paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-        transition: theme.transitions.create("width"),
-        width: "100%",
-        [theme.breakpoints.up("md")]: {
-          width: "20ch",
-        },
-      },
-    }));
+  const useStyles = makeStyles(() => ({
+    textField: {
+      width: "98%",
+      height: "50%",
+      marginLeft: "auto",
+      marginRight: "auto",
+      paddingBottom: 0,
+      marginTop: 0,
+      fontWeight: 500,
+      borderRadius: 0,
+    },
+    input: {
+      color: "white"
+    }
+  }));
+
+  const classes = useStyles();
+
+
+  const [address, setAddress] = useState("");
+  const [data, setData] = useState({
+    lat:  34.052235,
+    lng: -118.243683,
+    listings: []
+  });
+
+  //   const handleSubmit = (e) => {
+  //     console.log(e);
+  //     setAddress(e);
+
+  //     // axios
+  //     // .post("http://localhost:3000/api/all", {
+  //     //   address: address,
+  //     // })
+  //     // .then((res) => {
+  //     //   // console.log(res.results);
+  //     // })
+  //     // .catch((err) => {
+  //     //   console.log(`Error occured in useEffect: ${err}`);
+  //     // });
+  //   // console.log("location submission successful");
+  // };
+
+
+  const handleChange = (e) => {
+    e.preventDefault();
+    console.log(address);
+    axios
+      .post("http://localhost:3000/api/all", {
+        address: address,
+      })
+      .then((res) => {
+        console.log(res.data);
+        setData(res.data);
+      })
+      .catch((err) => {
+        console.log(`Error occured in useEffect: ${err}`);
+      });
+      navigate('/dashboard');
+  };
+
+  const props = {
+    data: data,
+  };
 
     return (
       <div style={{ display: "flex", flexDirection: "column" }}>
@@ -125,38 +148,49 @@ class LandingPage extends Component {
           </Box>
         </div>
 
-        <div className="topoSearch" style={{ height: "300px" }}>
+        <div className="topoSearch" style={{ height: "350px" }}>
           <img className="topo" src={topoBackground} width="100%"></img>
           <div className="landingSearch">
-            <Search sx={{ border: ".75px solid #000000" }}>
-              <SearchIconWrapper>
-                <SearchIcon style={{ color: "#BBD1D1", opacity: "100%" }} />
-              </SearchIconWrapper>
-              <StyledInputBase
-                placeholder="city, state, or zip"
-                inputProps={{ "aria-label": "search" }}
-              />
-            </Search>
+            <form onSubmit={handleChange} action='/dashboard'>
+            <TextField 
+              id="standard-search"
+              variant="outlined"
+              label="city, state, zip code"
+              className={classes.textField}
+              value={address}
+              size="small"
+              onChange={(e) => setAddress(e.target.value)}
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="start">
+                    <SearchIcon sx={{ color: "#B9D8D8" }}/>
+                  </InputAdornment>
+                 )
+                }}
+            >
+              </TextField>
+          </form>
           </div>
         </div>
 
-        <div className="archways" style={{ height: `calc( 100vh - 390px)` }}>
+        <div className="archways" style={{ height: `calc( 100vh - 440px)` }}>
           <div
             className="leftArch"
             style={{ width: "49%", height: "100%", float: "left" }}
           >
+            <Link to='/dashboard'><button className="leftArchText">book</button></Link>
             <img className="archway" src={bookArchway} width="100%"></img>
           </div>
           <div
             className="rightArch"
             style={{ width: "50%", height: "100%", float: "right" }}
           >
+             <Link to='/dashboard'><button className="rightArchText">host</button></Link>
             <img className="archway" src={hostArchway} width="100%"></img>
           </div>
         </div>
       </div>
     );
-  }
+
 }
 
-export default LandingPage;

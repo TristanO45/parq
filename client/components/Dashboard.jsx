@@ -9,55 +9,46 @@ import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
-import InputBase from "@mui/material/InputBase";
+import { makeStyles } from "@material-ui/core";
 import SearchIcon from "@mui/icons-material/Search";
+import InputAdornment from '@material-ui/core/InputAdornment';
 import TextField from "@mui/material/TextField";
 import Maps from "./Map.jsx";
-import { useEffect, useState, useContext, createContext } from "react";
+import ParkingSpot from "./ParkingSpot.jsx"
+import { useEffect, useState } from "react";
+
 
 export default function Dashboard() {
-  const Search = styled("div")(({ theme }) => ({
-    position: "relative",
-    borderRadius: "15px",
-    backgroundColor: alpha(theme.palette.common.white, 1),
-    "&:hover": {
-      backgroundColor: alpha(theme.palette.common.white, 1),
+
+  const useStyles = makeStyles(() => ({
+    textField: {
+      width: "98%",
+      height: "50%",
+      marginLeft: "auto",
+      marginRight: "auto",
+      paddingBottom: 0,
+      marginTop: 0,
+      fontWeight: 500,
+      borderRadius: 0,
     },
-    marginRight: theme.spacing(2),
-    marginLeft: 0,
-    width: "100%",
-    [theme.breakpoints.up("sm")]: {
-      marginLeft: theme.spacing(3),
-      width: "auto",
+    overrides: {
+      border: 0,
+      borderRadius: 20
     },
+    input: {
+      color: "white"
+    }
   }));
 
-  const SearchIconWrapper = styled("div")(({ theme }) => ({
-    padding: theme.spacing(0, 2),
-    height: "100%",
-    position: "absolute",
-    pointerEvents: "none",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-  }));
+  const classes = useStyles();
 
-  const StyledInputBase = styled(InputBase)(({ theme }) => ({
-    color: "inherit",
-    "& .MuiInputBase-input": {
-      padding: theme.spacing(1, 1, 1, 0),
-      // vertical padding + font size from searchIcon
-      paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-      transition: theme.transitions.create("width"),
-      width: "100%",
-      [theme.breakpoints.up("md")]: {
-        width: "20ch",
-      },
-    },
-  }));
 
   const [address, setAddress] = useState("");
-  const [data, setData] = useState({});
+  const [data, setData] = useState({
+    lat:  34.052235,
+    lng: -118.243683,
+    listings: []
+  });
 
   //   const handleSubmit = (e) => {
   //     console.log(e);
@@ -79,7 +70,6 @@ export default function Dashboard() {
   const handleChange = (e) => {
     e.preventDefault();
     console.log(address);
-    // setAddress(e.target.value);
     axios
       .post("http://localhost:3000/api/all", {
         address: address,
@@ -91,15 +81,23 @@ export default function Dashboard() {
       .catch((err) => {
         console.log(`Error occured in useEffect: ${err}`);
       });
-    // console.log("location submission successful");
   };
 
-  const dataContext = createContext();
+  const props = {
+    data: data,
+  };
 
   // useEffect((e) => {
   //   setAddress();
   //   setData();
   // }, []);
+
+  const listings = data.listings;
+  
+const spotElems = listings.map((listings, i) => {
+    return <ParkingSpot address={listings.address} />;
+});
+
 
   return (
     <div style={{ display: "flex", flexDirection: "column" }}>
@@ -132,9 +130,11 @@ export default function Dashboard() {
                 host
               </Typography>
             </Button>
+            <Link to='/'>
             <Button>
               <img className="websiteLogo" src={logo} />
             </Button>
+            </Link>
             <Button color="inherit" sx={{ flexGrow: 1 }}>
               <Typography
                 variant="h6"
@@ -174,30 +174,24 @@ export default function Dashboard() {
           style={{ width: "30%", float: "left", marginLeft: "10px" }}
         >
           <form onSubmit={handleChange}>
-            <TextField
-              required
-              id="outlined-required"
+            <TextField 
+              id="standard-search"
+              variant="outlined"
               label="city, state, zip code"
+              className={classes.textField}
               value={address}
+              size="small"
               onChange={(e) => setAddress(e.target.value)}
-            />
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="start">
+                    <SearchIcon sx={{ color: "#B9D8D8" }}/>
+                  </InputAdornment>
+                 )
+                }}
+            >
+              </TextField>
           </form>
-          {/* <Search sx={{ border: ".75px solid #000000" }}>
-            <SearchIconWrapper>
-              <SearchIcon style={{ color: "#B9D8D8", opacity: "100%" }} />
-            </SearchIconWrapper>
-            <StyledInputBase
-              placeholder="city, state, or zip"
-              inputProps={{ "aria-label": "search" }}
-              // value={address}
-              // onSubmit={e => setAddress(e.target.value)}
-              onChange={handleChange}
-            />
-          </Search> */}
-
-          {/* <form method="POST" action="http://localhost:3000/api/all">
-            <input name="search" type="text" placeholder="city, state, or zip" onSubmit={handleChange}></input>
-          </form>  */}
         </div>
 
         <div className="rightFilter" style={{ width: "60%", float: "right" }}>
@@ -247,17 +241,15 @@ export default function Dashboard() {
           className="leftMap"
           style={{ width: "49%", height: "100%", float: "left" }}
         >
-          <dataContext.Provider value={data}>
-            <Maps className="map" />
-          </dataContext.Provider>
+          <Maps className="map" {...props} />
         </div>
         <div
           className="rightTiles"
           style={{ width: "50%", height: "100%", float: "right" }}
-        ></div>
+        >
+            {spotElems}
+        </div>
       </div>
     </div>
   );
 }
-
-

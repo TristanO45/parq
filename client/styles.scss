@@ -3,7 +3,7 @@ body {
 }
 
 @font-face {
-  font-family: 'AirBnbCereal';
+  font-family: 'AirbnbCereal';
   src: local('Cereal-Bold'), url('/client/src/airbnb-cereal-font/AirbnbCereal_W_Bd.otf') format('otf');
   src: local('Cereal-Black'), url('/client/src/airbnb-cereal-font/AirbnbCereal_W_Bk.otf') format('otf');
   src: local('Cereal-Light'), url('/client/src/airbnb-cereal-font/AirbnbCereal_W_Lt.otf') format('otf');
@@ -47,7 +47,7 @@ img.topo {
   /*margin: auto;*/
   padding: 0%;
 
-top: 50%;
+top: 48%;
 transform: translateY(-50%);
 -ms-transform: translateY(-50%);
 -moz-transform: translateY(-50%);
@@ -82,25 +82,50 @@ div.css-ijx2sl {
  border-radius: 15px;
 }
 
+.leftArchText {
+  font-family: Helvetica;
+  font-weight: 100;
+  color: #36454F;
+  opacity: 80%;
+  background-color: #F8F6F2;
+  border: 0;
+  font-size: x-large;
+  z-index: 3;
+  margin-left: 40%;
+  margin-top: 150px;
+  position: fixed;
+
+}
+
+.rightArchText {
+  font-family: Helvetica;
+  font-weight: 100;
+  color: #36454F;
+  opacity: 80%;
+  font-size: x-large;
+  z-index: 3;
+  margin-left: 5%;
+  margin-top: 150px;
+  position: fixed;
+  background-color: #F8F6F2;
+  border: 0;
+}
+
 img.archway {
   display: block;
   margin: auto;
   opacity: 100%;
   width: auto;
-  height: 75%;
-  margin-top: 70px;
-
+  height: 100%;
+  z-index: 2;
 }
 
 .parkingSpotTile {
-  width: 420px;
-  height: 260px;
+  width: 320px;
+  height: 160px;
   border-radius: 20px;
   background: #B9D8D8;
-  backdrop-filter: blur(16px) saturate(180%);
-  -webkit-backdrop-filter: blur(16px) saturate(180%);
   border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 0 80px rgba(0, 0, 0, 0.25);
   padding: 30px 30px 30px 30px;
   overflow: hidden; 
 }
