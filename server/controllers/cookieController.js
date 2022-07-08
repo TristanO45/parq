@@ -1,7 +1,4 @@
 const express = require("express");
-const router = express.Router();
-const cookieParser = require("cookie-parser");
-const { User } = require("../models/userModel");
 const jwt = require("jsonwebtoken");
 
 cookieController = {};
@@ -10,7 +7,7 @@ cookieController.setCookie =  (req, res, next) => {
   const { username } = req.body;
   const token = generateAuthToken(username);
   res.cookie("access_token", token, {
-    httpOnly: true,
+    httpOnly: true
   });
   return next();
 };
