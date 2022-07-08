@@ -10,7 +10,8 @@ import DialogActions from '@mui/material/DialogActions';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import Typography from '@mui/material/Typography';
-import SignupForm from './SignupForm.jsx'
+//import SignupForm from './SignupForm.jsx';
+import Signup from './SignupTest.jsx';
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   '& .MuiDialogContent-root': {
@@ -33,8 +34,8 @@ const BootstrapDialogTitle = (props) => {
           onClick={onClose}
           sx={{
             position: 'absolute',
-            right: 8,
-            top: 8,
+            right: -475,
+            top: 0,
             color: (theme) => theme.palette.grey[500],
           }}
         >
@@ -52,7 +53,6 @@ BootstrapDialogTitle.propTypes = {
 
 export default function SignupPop() {
   const [open, setOpen] = useState(false);
-  // const [user, setUser] = useState()
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -75,7 +75,7 @@ export default function SignupPop() {
           sign in
         </BootstrapDialogTitle>
         <DialogContent dividers>
-          <SignupForm />
+          <Signup />
         </DialogContent>
       </BootstrapDialog>
     </div>

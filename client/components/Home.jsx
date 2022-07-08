@@ -1,8 +1,8 @@
 import React from "react";
-import { useState } from "react";
+//import { useState } from "react";
 import AboutPop from  "./AboutPop.jsx";
 import SignupPop from "./SignupPop.jsx";
-import SignupForm from "./SignupForm.jsx";
+//import SignupForm from "./SignupForm.jsx";
 
 
 export default function Home () {
