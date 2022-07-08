@@ -13,7 +13,7 @@ router.get("/location", apiController.getLocation, (req, res, next) => {
 });
 
 // get request for bookings
-router.get("/booking", apiController.getBooking, (req, res, next) => {
+router.get("/booking", cookieController.verifyCookie, apiController.getBooking, (req, res, next) => {
   return res.status(200).json(res.locals.booking);
 });
 
@@ -32,6 +32,7 @@ router.get(
 
 router.post(
   "/location",
+  cookieController.verifyCookie,
   googleRequestController.mapLocation,
   apiController.createLocation,
   (req, res, next) => {
@@ -41,7 +42,7 @@ router.post(
 
 // post rquests for new bookings
 
-router.post("/booking", apiController.createBooking, (req, res, next) => {
+router.post("/booking", cookieController.verifyCookie, apiController.createBooking, (req, res, next) => {
   return res.status(200).json(res.locals.booking);
 });
 
