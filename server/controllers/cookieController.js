@@ -10,7 +10,7 @@ cookieController.setCookie =  (req, res, next) => {
   const { username } = req.body;
   const token = generateAuthToken(username);
   res.cookie("access_token", token, {
-    httpOnly: true,
+    httpOnly: true
   });
   return next();
 };
@@ -25,6 +25,14 @@ cookieController.verifyCookie = (req, res, next) => {
   }
   try {
     const data = jwt.verify(token, process.env.JWTPRIVATEKEY);
+    //we can use below example to catch the error:
+    // jwt.verify(token, process.env.JWTPRIVATEKEY, (err, verifiedJwt) => {
+    //   if(err){
+    //     res.send(err.message)
+    //   }else{
+    //     res.send(verifiedJwt)
+    //   }
+    // })
     console.log(data);
     // req.userId = data.id;
     return next();
@@ -45,9 +53,8 @@ cookieController.logout = (req, res, next) => {
 //  });
 
 function generateAuthToken(username) {
-  const token = jwt.sign({ username: username }, process.env.JWTPRIVATEKEY, {
-    expiresIn: "360",
-  });
+  const token = jwt.sign({ username: username }, process.env.JWTPRIVATEKEY, 
+    {expiresIn: "1h"});
   return token;
 }
 
