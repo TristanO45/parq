@@ -17,7 +17,7 @@ router.post(
   loginController.loginUser,
   cookieController.setCookie,
   (req, res) => {
-    res.status(200).send({ message: "Logged in successfully" });
+    res.status(201).send({ message: "Logged in successfully" });
   }
 );
 

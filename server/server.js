@@ -1,6 +1,6 @@
 const express = require("express");
 const path = require("path");
-var cors = require("cors");
+const cors = require("cors");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const app = express();

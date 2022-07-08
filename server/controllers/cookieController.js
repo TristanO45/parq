@@ -46,7 +46,7 @@ cookieController.logout = (req, res, next) => {
 
 function generateAuthToken(username) {
   const token = jwt.sign({ username: username }, process.env.JWTPRIVATEKEY, {
-    expiresIn: "360",
+    expiresIn: "7d",
   });
   return token;
 }

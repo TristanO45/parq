@@ -15,6 +15,7 @@ import { makeStyles } from "@material-ui/core";
 import SearchIcon from "@mui/icons-material/Search";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import TextField from "@mui/material/TextField";
+import LoginPopup from "./LoginPopup.jsx"
 
 
 export default function LandingPage() {
@@ -113,19 +114,7 @@ export default function LandingPage() {
                 about
               </Typography>
             </Button>
-            <Button color="inherit" sx={{ flexGrow: 1 }}>
-              <Typography
-                variant="h6"
-                component="div"
-                sx={{
-                  textTransform: "none",
-                  fontWeight: "light",
-                  color: "#36454F",
-                }}
-              >
-                sign in
-              </Typography>
-            </Button>
+              <LoginPopup />
           </Toolbar>
         </Box>
       </div>
