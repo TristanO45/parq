@@ -11,8 +11,9 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import InputBase from "@mui/material/InputBase";
 import SearchIcon from "@mui/icons-material/Search";
+import TextField from "@mui/material/TextField";
 import Maps from "./Map.jsx";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext, createContext } from "react";
 
 export default function Dashboard() {
   const Search = styled("div")(({ theme }) => ({
@@ -56,27 +57,49 @@ export default function Dashboard() {
   }));
 
   const [address, setAddress] = useState("");
+  const [data, setData] = useState({});
 
-  const handleSubmit = (e) => {
-    console.log(e.target.value);
-    setAddress(e.target.value);
-    
-    // axios
-    // .post("http://localhost:3000/api/all", {
-    //   address: address,
-    // })
-    // .then((res) => {
-    //   // console.log(res.results);
-    // })
-    // .catch((err) => {
-    //   console.log(`Error occured in useEffect: ${err}`);
-    // });
-  // console.log("location submission successful");
-};
+  //   const handleSubmit = (e) => {
+  //     console.log(e);
+  //     setAddress(e);
 
-  useEffect(() => {
-    handleSubmit();
-  }, []);
+  //     // axios
+  //     // .post("http://localhost:3000/api/all", {
+  //     //   address: address,
+  //     // })
+  //     // .then((res) => {
+  //     //   // console.log(res.results);
+  //     // })
+  //     // .catch((err) => {
+  //     //   console.log(`Error occured in useEffect: ${err}`);
+  //     // });
+  //   // console.log("location submission successful");
+  // };
+
+  const handleChange = (e) => {
+    e.preventDefault();
+    console.log(address);
+    // setAddress(e.target.value);
+    axios
+      .post("http://localhost:3000/api/all", {
+        address: address,
+      })
+      .then((res) => {
+        console.log(res.data);
+        setData(res.data);
+      })
+      .catch((err) => {
+        console.log(`Error occured in useEffect: ${err}`);
+      });
+    // console.log("location submission successful");
+  };
+
+  const dataContext = createContext();
+
+  // useEffect((e) => {
+  //   setAddress();
+  //   setData();
+  // }, []);
 
   return (
     <div style={{ display: "flex", flexDirection: "column" }}>
@@ -150,17 +173,31 @@ export default function Dashboard() {
           className="leftFilter"
           style={{ width: "30%", float: "left", marginLeft: "10px" }}
         >
-          <Search sx={{ border: ".75px solid #000000" }}>
+          <form onSubmit={handleChange}>
+            <TextField
+              required
+              id="outlined-required"
+              label="city, state, zip code"
+              value={address}
+              onChange={(e) => setAddress(e.target.value)}
+            />
+          </form>
+          {/* <Search sx={{ border: ".75px solid #000000" }}>
             <SearchIconWrapper>
               <SearchIcon style={{ color: "#B9D8D8", opacity: "100%" }} />
             </SearchIconWrapper>
             <StyledInputBase
               placeholder="city, state, or zip"
-              value={""}
               inputProps={{ "aria-label": "search" }}
-              onSubmit={handleSubmit}
+              // value={address}
+              // onSubmit={e => setAddress(e.target.value)}
+              onChange={handleChange}
             />
-          </Search>
+          </Search> */}
+
+          {/* <form method="POST" action="http://localhost:3000/api/all">
+            <input name="search" type="text" placeholder="city, state, or zip" onSubmit={handleChange}></input>
+          </form>  */}
         </div>
 
         <div className="rightFilter" style={{ width: "60%", float: "right" }}>
@@ -210,7 +247,9 @@ export default function Dashboard() {
           className="leftMap"
           style={{ width: "49%", height: "100%", float: "left" }}
         >
-          <Maps className="map" />
+          <dataContext.Provider value={data}>
+            <Maps className="map" />
+          </dataContext.Provider>
         </div>
         <div
           className="rightTiles"
@@ -220,3 +259,5 @@ export default function Dashboard() {
     </div>
   );
 }
+
+

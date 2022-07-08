@@ -1,74 +1,83 @@
-import React, { Component } from "react";
+import React, { Component, useContext } from "react";
 import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
 import { mapStyles } from "../assets/mapsStyles";
+import { dataContext } from "./Dashboard.jsx";
 
 const containerStyle = {
-  width: "100%",
-  height: "100%",
-  float: "left",
-};
+    width: "100%",
+    height: "100%",
+    float: "left",
+  };
 
-const center = {
-  lat: 34.024212,
-  lng: -118.496475,
-};
+//  if (!data) {
+//     const center = {
+//         lat:  34.052235,
+//         lng: -118.243683,
+//       }; 
+//  }
+//  else {
+//     const center = {
+//         lat: data.lat,
+//         lng: data.lng,
+//       };
+//  }
+
+
+ const center = {
+    lat:  34.052235,
+    lng: -118.243683,
+  }; 
 
 const options = {
   styles: mapStyles,
 };
 
-class Map extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      fetchedSpots: false,
-      spots: [],
-    };
-  }
+export default function Map() {
+  
 
-  // fetch to /get all
-//   componentDidMount() {
-//     fetch("http://localhost:3000/api/all")
-//       .then((res) => res.json())
-//       .then((data) => {
-//         console.log(data);
-//         // if (!Object.isArray(spots)) spots = [];
-//         // return this.setState({
-//         //   spots,
-//         //   fetchedSpots: true,
-//         // });
-//       })
-//       .catch((err) =>
-//         console.log("Spots.componentDidMount: get spots: ERROR: ", err)
-//       );
-//   }
+//   const { data } = useContext(dataContext);
 
-  render() {
-    const { spots } = this.state;
-
-    // const markerElems = spots.map((spots, i) => {
-    //     const center = {
-    //         lat: spots.lat,
-    //         lng: spots.lng,
-    //       };
-
-    //   return <Marker key={i} position={center} />;
-    // });
-
-    return (
-      <LoadScript googleMapsApiKey="AIzaSyBnmB6jh_VAGjxJwUBAep3545qwW_g-62Y">
-        <GoogleMap
-          mapContainerStyle={containerStyle}
-          center={center}
-          zoom={10}
-          options={options}
-        >
-          {/* {markerElems} */}
-          <></>
-        </GoogleMap>
-      </LoadScript>
-    );
-  }
+  return (
+    <LoadScript googleMapsApiKey="AIzaSyBnmB6jh_VAGjxJwUBAep3545qwW_g-62Y">
+      <GoogleMap
+        mapContainerStyle={containerStyle}
+        center={center}
+        zoom={10}
+        options={options}
+      >
+        {/* {markerElems} */}
+        <Marker position={center} />
+        <></>
+      </GoogleMap>
+    </LoadScript>
+  );
 }
 
-export default Map;
+
+// fetch to /get all
+  //   componentDidMount() {
+  //     fetch("http://localhost:3000/api/all")
+  //       .then((res) => res.json())
+  //       .then((data) => {
+  //         console.log(data);
+  //         // if (!Object.isArray(spots)) spots = [];
+  //         // return this.setState({
+  //         //   spots,
+  //         //   fetchedSpots: true,
+  //         // });
+  //       })
+  //       .catch((err) =>
+  //         console.log("Spots.componentDidMount: get spots: ERROR: ", err)
+  //       );
+  //   }
+
+//   const { spots } = this.state;
+
+  // const markerElems = spots.map((spots, i) => {
+  //     const center = {
+  //         lat: spots.lat,
+  //         lng: spots.lng,
+  //       };
+
+  //   return <Marker key={i} position={center} />;
+  // });
