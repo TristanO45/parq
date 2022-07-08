@@ -37,37 +37,32 @@ export default function LandingPage() {
   const classes = useStyles();
 
   const [address, setAddress] = useState("");
-  const [data, setData] = useState({
-    lat: 34.052235,
-    lng: -118.243683,
-    listings: [],
-  });
+  // const [data, setData] = useState({
+  //   lat: 34.052235,
+  //   lng: -118.243683,
+  //   listings: [],
+  // });
 
   let history = useHistory();
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    history.push('/dashboard');
-
-    console.log(address);
     axios
       .post("http://localhost:3000/api/all", {
         address: address,
       })
       .then((res) => {
-        console.log(res.data);
-        setData(res.data);
-      })
+        history.push({
+          pathname: '/dashboard',
+          data:res.data})
+        })
       .catch((err) => {
         console.log(`Error occured in useEffect: ${err}`);
       });
 
   };
 
-  const props = {
-    data: data,
-  };
 
   return (
     <div style={{ display: "flex", flexDirection: "column" }}>

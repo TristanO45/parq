@@ -16,7 +16,7 @@ import Maps from "./Map.jsx";
 import ParkingSpot from "./ParkingSpot.jsx";
 import { useEffect, useState } from "react";
 
-export default function Dashboard() {
+export default function Dashboard(state) {
 
   const useStyles = makeStyles(() => ({
     textField: {
@@ -39,7 +39,7 @@ export default function Dashboard() {
   }));
 
   const classes = useStyles();
-
+  
   const [address, setAddress] = useState("");
   const [zoom, setZoom] = useState(10);
   const [data, setData] = useState({
@@ -48,13 +48,14 @@ export default function Dashboard() {
     listings: [],
   });
 
+
+
   const props = {
     data: data,
     isVisible: true,
     zoom: zoom
   };
 
-  console.log(data) 
   
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -72,10 +73,13 @@ export default function Dashboard() {
   };
 
 
-  // useEffect((e) => {
-  //   setAddress();
-  //   setData();
-  // }, []);
+  useEffect((e) => {
+    setData(state.location.data ? state.location.data : data)
+  }, [
+    {lat: 34.052235,
+    lng: -118.243683,
+    listings: [],}
+  ]);
 
   const listings = data.listings;
 
