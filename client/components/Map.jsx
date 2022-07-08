@@ -8,38 +8,35 @@ const containerStyle = {
   float: "left",
 };
 
-
 const options = {
   styles: mapStyles,
 };
 
-
 export default function Map({ data }) {
-    const center = {
-                lat: data.lat,
-                lng: data.lng,
-              };
+  const center = {
+    lat: data.lat,
+    lng: data.lng,
+  };
+  const listings = data.listings;
 
-const listings = data.listings;
-
-const markerElems = listings.map((listings, i) => {
+  const markerElems = listings.map((listings, i) => {
     const position = {
-        lat: listings.coordinates.lat,
-        lng: listings.coordinates.lng,
-      };
-    return <Marker key={i} position={position}/>;
-});
+      lat: listings.coordinates.lat,
+      lng: listings.coordinates.lng,
+    };
+
+    return <Marker key={i} position={position} />;
+  });
 
   return (
     <LoadScript googleMapsApiKey="AIzaSyBnmB6jh_VAGjxJwUBAep3545qwW_g-62Y">
       <GoogleMap
         mapContainerStyle={containerStyle}
         center={center}
-        zoom={10}
+        zoom={13}
         options={options}
       >
         {markerElems}
-        {/* <Marker position={center} /> */}
         <></>
       </GoogleMap>
     </LoadScript>

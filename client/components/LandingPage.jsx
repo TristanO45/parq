@@ -12,13 +12,10 @@ import Button from "@mui/material/Button";
 import { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core";
 import SearchIcon from "@mui/icons-material/Search";
-import InputAdornment from '@material-ui/core/InputAdornment';
+import InputAdornment from "@material-ui/core/InputAdornment";
 import TextField from "@mui/material/TextField";
 
-
-
 export default function LandingPage() {
-
   const useStyles = makeStyles(() => ({
     textField: {
       width: "98%",
@@ -31,18 +28,17 @@ export default function LandingPage() {
       borderRadius: 0,
     },
     input: {
-      color: "white"
-    }
+      color: "white",
+    },
   }));
 
   const classes = useStyles();
 
-
   const [address, setAddress] = useState("");
   const [data, setData] = useState({
-    lat:  34.052235,
+    lat: 34.052235,
     lng: -118.243683,
-    listings: []
+    listings: [],
   });
 
   //   const handleSubmit = (e) => {
@@ -62,7 +58,6 @@ export default function LandingPage() {
   //   // console.log("location submission successful");
   // };
 
-
   const handleChange = (e) => {
     e.preventDefault();
     console.log(address);
@@ -77,82 +72,82 @@ export default function LandingPage() {
       .catch((err) => {
         console.log(`Error occured in useEffect: ${err}`);
       });
-      navigate('/dashboard');
+    navigate("/dashboard");
   };
 
   const props = {
     data: data,
   };
 
-    return (
-      <div style={{ display: "flex", flexDirection: "column" }}>
-        <div className="navBar" style={{ height: "70px" }} sx={{ flexGrow: 1 }}>
-          <Box sx={{ flexGrow: 1 }}>
-            <Toolbar>
-              <Button color="inherit" sx={{ flexGrow: 1 }}>
-                <Typography
-                  variant="h6"
-                  component="div"
-                  sx={{
-                    textTransform: "none",
-                    fontWeight: "light",
-                    color: "#36454F",
-                  }}
-                >
-                  book
-                </Typography>
-              </Button>
-              <Button color="inherit" sx={{ flexGrow: 1 }}>
-                <Typography
-                  variant="h6"
-                  component="div"
-                  sx={{
-                    textTransform: "none",
-                    fontWeight: "light",
-                    color: "#36454F",
-                  }}
-                >
-                  host
-                </Typography>
-              </Button>
-              <Button>
-                <img className="websiteLogo" src={logo} />
-              </Button>
-              <Button color="inherit" sx={{ flexGrow: 1 }}>
-                <Typography
-                  variant="h6"
-                  component="div"
-                  sx={{
-                    textTransform: "none",
-                    fontWeight: "light",
-                    color: "#36454F",
-                  }}
-                >
-                  about
-                </Typography>
-              </Button>
-              <Button color="inherit" sx={{ flexGrow: 1 }}>
-                <Typography
-                  variant="h6"
-                  component="div"
-                  sx={{
-                    textTransform: "none",
-                    fontWeight: "light",
-                    color: "#36454F",
-                  }}
-                >
-                  sign in
-                </Typography>
-              </Button>
-            </Toolbar>
-          </Box>
-        </div>
+  return (
+    <div style={{ display: "flex", flexDirection: "column" }}>
+      <div className="navBar" style={{ height: "70px" }} sx={{ flexGrow: 1 }}>
+        <Box sx={{ flexGrow: 1 }}>
+          <Toolbar>
+            <Button color="inherit" sx={{ flexGrow: 1 }}>
+              <Typography
+                variant="h6"
+                component="div"
+                sx={{
+                  textTransform: "none",
+                  fontWeight: "light",
+                  color: "#36454F",
+                }}
+              >
+                book
+              </Typography>
+            </Button>
+            <Button color="inherit" sx={{ flexGrow: 1 }}>
+              <Typography
+                variant="h6"
+                component="div"
+                sx={{
+                  textTransform: "none",
+                  fontWeight: "light",
+                  color: "#36454F",
+                }}
+              >
+                host
+              </Typography>
+            </Button>
+            <Button>
+              <img className="websiteLogo" src={logo} />
+            </Button>
+            <Button color="inherit" sx={{ flexGrow: 1 }}>
+              <Typography
+                variant="h6"
+                component="div"
+                sx={{
+                  textTransform: "none",
+                  fontWeight: "light",
+                  color: "#36454F",
+                }}
+              >
+                about
+              </Typography>
+            </Button>
+            <Button color="inherit" sx={{ flexGrow: 1 }}>
+              <Typography
+                variant="h6"
+                component="div"
+                sx={{
+                  textTransform: "none",
+                  fontWeight: "light",
+                  color: "#36454F",
+                }}
+              >
+                sign in
+              </Typography>
+            </Button>
+          </Toolbar>
+        </Box>
+      </div>
 
-        <div className="topoSearch" style={{ height: "350px" }}>
-          <img className="topo" src={topoBackground} width="100%"></img>
-          <div className="landingSearch">
-            <form onSubmit={handleChange} action='/dashboard'>
-            <TextField 
+      <div className="topoSearch" style={{ height: "350px" }}>
+        <img className="topo" src={topoBackground} width="100%"></img>
+        <div className="landingSearch">
+          <form onSubmit={handleChange} action="/dashboard">
+            <TextField
               id="standard-search"
               variant="outlined"
               label="city, state, zip code"
@@ -163,34 +158,35 @@ export default function LandingPage() {
               InputProps={{
                 endAdornment: (
                   <InputAdornment position="start">
-                    <SearchIcon sx={{ color: "#B9D8D8" }}/>
+                    <SearchIcon sx={{ color: "#B9D8D8" }} />
                   </InputAdornment>
-                 )
-                }}
-            >
-              </TextField>
+                ),
+              }}
+            ></TextField>
           </form>
-          </div>
-        </div>
-
-        <div className="archways" style={{ height: `calc( 100vh - 440px)` }}>
-          <div
-            className="leftArch"
-            style={{ width: "49%", height: "100%", float: "left" }}
-          >
-            <Link to='/dashboard'><button className="leftArchText">book</button></Link>
-            <img className="archway" src={bookArchway} width="100%"></img>
-          </div>
-          <div
-            className="rightArch"
-            style={{ width: "50%", height: "100%", float: "right" }}
-          >
-             <Link to='/dashboard'><button className="rightArchText">host</button></Link>
-            <img className="archway" src={hostArchway} width="100%"></img>
-          </div>
         </div>
       </div>
-    );
 
+      <div className="archways" style={{ height: `calc( 100vh - 440px)` }}>
+        <div
+          className="leftArch"
+          style={{ width: "49%", height: "100%", float: "left" }}
+        >
+          <Link to="/dashboard">
+            <button className="leftArchText">book</button>
+          </Link>
+          <img className="archway" src={bookArchway} width="100%"></img>
+        </div>
+        <div
+          className="rightArch"
+          style={{ width: "50%", height: "100%", float: "right" }}
+        >
+          <Link to="/dashboard">
+            <button className="rightArchText">host</button>
+          </Link>
+          <img className="archway" src={hostArchway} width="100%"></img>
+        </div>
+      </div>
+    </div>
+  );
 }
-

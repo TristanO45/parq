@@ -121,22 +121,48 @@ img.archway {
 }
 
 .parkingSpotTile {
-  width: 320px;
+  width: 340px;
   height: 160px;
   border-radius: 20px;
   background: #B9D8D8;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: .75px solid #36454F;
   padding: 30px 30px 30px 30px;
   overflow: hidden; 
+  margin-top: 1rem;
+  margin-left: .5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  z-index: 2;
 }
 
-img.tileTopo {
+.spotAddress {
+  font-family: Helvetica;
+  font-weight: bold;
+  font-size: medium;
+  color:#F8F6F2;
+  text-align: center;
+  z-index: 2;
+}
+
+.tileTopo {
   position: absolute;
-  background-size: contain;
-  top: -350px;
+  background-size: cover;
   margin: auto;
-  opacity: 25%;
+  opacity: 50%;
+  top: -150px;
   z-index: 1;
 }
+
+.rightTiles {
+  scroll-behavior: smooth;
+  overflow-y: scroll; 
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+}
+
 
 

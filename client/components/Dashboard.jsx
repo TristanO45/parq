@@ -11,15 +11,13 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import { makeStyles } from "@material-ui/core";
 import SearchIcon from "@mui/icons-material/Search";
-import InputAdornment from '@material-ui/core/InputAdornment';
+import InputAdornment from "@material-ui/core/InputAdornment";
 import TextField from "@mui/material/TextField";
 import Maps from "./Map.jsx";
-import ParkingSpot from "./ParkingSpot.jsx"
+import ParkingSpot from "./ParkingSpot.jsx";
 import { useEffect, useState } from "react";
 
-
 export default function Dashboard() {
-
   const useStyles = makeStyles(() => ({
     textField: {
       width: "98%",
@@ -33,21 +31,20 @@ export default function Dashboard() {
     },
     overrides: {
       border: 0,
-      borderRadius: 20
+      borderRadius: 20,
     },
     input: {
-      color: "white"
-    }
+      color: "white",
+    },
   }));
 
   const classes = useStyles();
 
-
   const [address, setAddress] = useState("");
   const [data, setData] = useState({
-    lat:  34.052235,
+    lat: 34.052235,
     lng: -118.243683,
-    listings: []
+    listings: [],
   });
 
   //   const handleSubmit = (e) => {
@@ -85,6 +82,7 @@ export default function Dashboard() {
 
   const props = {
     data: data,
+    isVisible: true,
   };
 
   // useEffect((e) => {
@@ -93,11 +91,44 @@ export default function Dashboard() {
   // }, []);
 
   const listings = data.listings;
-  
-const spotElems = listings.map((listings, i) => {
-    return <ParkingSpot address={listings.address} />;
-});
 
+  const spotElems = listings.map((listings, i) => {
+    // convert latitude to longitude of the search to radians
+    const radLatSearch = (Math.PI * data.lat) / 180;
+    const radLngSearch = (Math.PI * data.lng) / 180;
+
+    // convert latitude to longitude of the parking spot to radians
+    const radLatSpot = (Math.PI * listings.coordinates.lat) / 180;
+    const radLngSpot = (Math.PI * listings.coordinates.lng) / 180;
+
+    // calculate the great circle
+    var R = 6371; // km
+    var dLat = radLatSpot - radLatSearch;
+    var dLon = radLngSpot - radLngSearch;
+
+    var a =
+      Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+      Math.sin(dLon / 2) *
+        Math.sin(dLon / 2) *
+        Math.cos(radLatSearch) *
+        Math.cos(radLatSpot);
+    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    var d = R * c;
+
+    console.log(d);
+    // check if the distance is within 5 miles
+    if (d > 8.04672) {
+      props.isVisible = false;
+    } else {
+      props.isVisible = true;
+    }
+
+    // only return spots with isVisible set to true 
+    if (props.isVisible) {
+      return <ParkingSpot key={i} address={listings.address} {...props} />;
+    }
+    
+  });
 
   return (
     <div style={{ display: "flex", flexDirection: "column" }}>
@@ -130,10 +161,10 @@ const spotElems = listings.map((listings, i) => {
                 host
               </Typography>
             </Button>
-            <Link to='/'>
-            <Button>
-              <img className="websiteLogo" src={logo} />
-            </Button>
+            <Link to="/">
+              <Button>
+                <img className="websiteLogo" src={logo} />
+              </Button>
             </Link>
             <Button color="inherit" sx={{ flexGrow: 1 }}>
               <Typography
@@ -174,7 +205,7 @@ const spotElems = listings.map((listings, i) => {
           style={{ width: "30%", float: "left", marginLeft: "10px" }}
         >
           <form onSubmit={handleChange}>
-            <TextField 
+            <TextField
               id="standard-search"
               variant="outlined"
               label="city, state, zip code"
@@ -185,12 +216,11 @@ const spotElems = listings.map((listings, i) => {
               InputProps={{
                 endAdornment: (
                   <InputAdornment position="start">
-                    <SearchIcon sx={{ color: "#B9D8D8" }}/>
+                    <SearchIcon sx={{ color: "#B9D8D8" }} />
                   </InputAdornment>
-                 )
-                }}
-            >
-              </TextField>
+                ),
+              }}
+            ></TextField>
           </form>
         </div>
 
@@ -247,7 +277,7 @@ const spotElems = listings.map((listings, i) => {
           className="rightTiles"
           style={{ width: "50%", height: "100%", float: "right" }}
         >
-            {spotElems}
+          {spotElems}
         </div>
       </div>
     </div>
