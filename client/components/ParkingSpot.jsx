@@ -11,6 +11,7 @@ const ParkingSpot = ({ info }) => {
   return (
     <div className="parkingSpotTile">
       <img className="tileTopo" src={topoBackground} width="100%"></img>
+      <h1 className="spotAddress">{address}</h1>
     </div>
   );
 };

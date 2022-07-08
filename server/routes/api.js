@@ -19,7 +19,7 @@ router.get("/booking", apiController.getBooking, (req, res, next) => {
 
 // get request for all locations
 
-router.get(
+router.post(
   "/all",
   googleRequestController.mapLocation,
   apiController.getAllLocation,

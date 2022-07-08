@@ -1,5 +1,6 @@
 const express = require("express");
 const path = require("path");
+var cors = require("cors");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const app = express();
@@ -10,6 +11,7 @@ dotenv.config();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
+app.use(cors());
 
 // Mongo Connection
 mongoose
