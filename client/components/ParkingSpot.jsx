@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import topoBackground from "../assets/topoBackground.png";
 import { Link } from "react-router-dom";
 
-const ParkingSpot = ({ address, isVisible }) => {
+const ParkingSpot = ({ address, isVisible, props }) => {
 
   const onSpotClick = (e) => {
     console.log(address);

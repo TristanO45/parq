@@ -48,16 +48,18 @@ export default function LandingPage() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    history.push('/dashboard');
-
     console.log(address);
     axios
       .post("http://localhost:3000/api/all", {
         address: address,
       })
       .then((res) => {
-        console.log(res.data);
-        setData(res.data);
+        const pushedData = res.data;
+        
+        history.push({ 
+          pathname: '/dashboard',
+          state: pushedData
+         });
       })
       .catch((err) => {
         console.log(`Error occured in useEffect: ${err}`);

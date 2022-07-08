@@ -16,7 +16,7 @@ import Maps from "./Map.jsx";
 import ParkingSpot from "./ParkingSpot.jsx";
 import { useEffect, useState } from "react";
 
-export default function Dashboard() {
+export default function Dashboard(state) {
 
   const useStyles = makeStyles(() => ({
     textField: {
@@ -38,7 +38,10 @@ export default function Dashboard() {
     },
   }));
 
+
   const classes = useStyles();
+
+  console.log('this is the passed data =>', state.location.state);
 
   const [address, setAddress] = useState("");
   const [zoom, setZoom] = useState(10);
@@ -48,13 +51,24 @@ export default function Dashboard() {
     listings: [],
   });
 
+  // const defaultData = {
+  //   lat: 34.052235,
+  //   lng: -118.243683,
+  //   listings: [],
+  // }
+
+  // const [data, setData] = useState(state ? state.location.state : defaultData);
+
+  // console.log('this is the default data after useState and setData =>', defaultData)
+  
+  
+
   const props = {
     data: data,
     isVisible: true,
     zoom: zoom
   };
 
-  console.log(data) 
   
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -71,11 +85,13 @@ export default function Dashboard() {
       });
   };
 
-
-  // useEffect((e) => {
-  //   setAddress();
-  //   setData();
-  // }, []);
+  useEffect((e) => {
+    setData(state.location.state ? state.location.state : data);
+  }, [{
+    lat: 34.052235,
+    lng: -118.243683,
+    listings: [],
+  }]);
 
   const listings = data.listings;
 
@@ -103,7 +119,6 @@ export default function Dashboard() {
     var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
     var d = R * c;
 
-    console.log(d);
     // check if the distance is within 5 miles
     if (d > 8.04672) {
       props.isVisible = false;
