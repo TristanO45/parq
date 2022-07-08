@@ -2,7 +2,6 @@ import * as React from "react";
 import { Component } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import { styled, alpha } from "@mui/material/styles";
 import "../styles.scss";
 import logo from "../assets/blueParq.png";
 import Box from "@mui/material/Box";
@@ -41,49 +40,34 @@ export default function Dashboard() {
   const classes = useStyles();
 
   const [address, setAddress] = useState("");
+  const [zoom, setZoom] = useState(10);
   const [data, setData] = useState({
     lat: 34.052235,
     lng: -118.243683,
     listings: [],
   });
 
-  //   const handleSubmit = (e) => {
-  //     console.log(e);
-  //     setAddress(e);
+  const props = {
+    data: data,
+    isVisible: true,
+    zoom: zoom
+  };
 
-  //     // axios
-  //     // .post("http://localhost:3000/api/all", {
-  //     //   address: address,
-  //     // })
-  //     // .then((res) => {
-  //     //   // console.log(res.results);
-  //     // })
-  //     // .catch((err) => {
-  //     //   console.log(`Error occured in useEffect: ${err}`);
-  //     // });
-  //   // console.log("location submission successful");
-  // };
-
-  const handleChange = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(address);
     axios
       .post("http://localhost:3000/api/all", {
         address: address,
       })
       .then((res) => {
-        console.log(res.data);
         setData(res.data);
+        setZoom(13);
       })
       .catch((err) => {
         console.log(`Error occured in useEffect: ${err}`);
       });
   };
 
-  const props = {
-    data: data,
-    isVisible: true,
-  };
 
   // useEffect((e) => {
   //   setAddress();
@@ -93,6 +77,7 @@ export default function Dashboard() {
   const listings = data.listings;
 
   const spotElems = listings.map((listings, i) => {
+
     // convert latitude to longitude of the search to radians
     const radLatSearch = (Math.PI * data.lat) / 180;
     const radLngSearch = (Math.PI * data.lng) / 180;
@@ -123,11 +108,10 @@ export default function Dashboard() {
       props.isVisible = true;
     }
 
-    // only return spots with isVisible set to true 
+    // only return spots with isVisible set to true
     if (props.isVisible) {
       return <ParkingSpot key={i} address={listings.address} {...props} />;
     }
-    
   });
 
   return (
@@ -204,7 +188,7 @@ export default function Dashboard() {
           className="leftFilter"
           style={{ width: "30%", float: "left", marginLeft: "10px" }}
         >
-          <form onSubmit={handleChange}>
+          <form onSubmit={handleSubmit}>
             <TextField
               id="standard-search"
               variant="outlined"

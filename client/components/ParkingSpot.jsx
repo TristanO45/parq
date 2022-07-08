@@ -4,14 +4,18 @@ import { Link } from "react-router-dom";
 
 const ParkingSpot = ({ address, isVisible }) => {
 
-  console.log(isVisible);
+  const onSpotClick = (e) => {
+    console.log(address);
+    
+  };
+
   return (
-        <div className="parkingSpotTile">
-          <img className="tileTopo" src={topoBackground} width="100%"></img>
-          <span>
-            <h1 className="spotAddress">{address}</h1>
-          </span>
-        </div>
+    <div className="parkingSpotTile" onClick={onSpotClick}>
+      <img className="tileTopo" src={topoBackground} width="100%"></img>
+      <span>
+        <h1 className="spotAddress">{address}</h1>
+      </span>
+    </div>
   );
 };
 

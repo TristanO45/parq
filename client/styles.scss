@@ -138,6 +138,11 @@ img.archway {
   z-index: 2;
 }
 
+.parkingSpotTile:hover {
+  transform: translateY(-2px);
+  transition: all .3s ease-in-out;
+}
+
 .spotAddress {
   font-family: Helvetica;
   font-weight: bold;

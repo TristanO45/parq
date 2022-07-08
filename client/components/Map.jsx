@@ -12,7 +12,7 @@ const options = {
   styles: mapStyles,
 };
 
-export default function Map({ data }) {
+export default function Map({ data , zoom}) {
   const center = {
     lat: data.lat,
     lng: data.lng,
@@ -25,7 +25,11 @@ export default function Map({ data }) {
       lng: listings.coordinates.lng,
     };
 
-    return <Marker key={i} position={position} />;
+    const onMarkerClick = (e) => {
+      console.log(listings.address);
+    };
+
+    return <Marker onClick={onMarkerClick} key={i} position={position} />;
   });
 
   return (
@@ -33,7 +37,7 @@ export default function Map({ data }) {
       <GoogleMap
         mapContainerStyle={containerStyle}
         center={center}
-        zoom={13}
+        zoom={zoom}
         options={options}
       >
         {markerElems}
