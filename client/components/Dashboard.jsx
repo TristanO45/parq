@@ -17,6 +17,7 @@ import ParkingSpot from "./ParkingSpot.jsx";
 import { useEffect, useState } from "react";
 
 export default function Dashboard() {
+
   const useStyles = makeStyles(() => ({
     textField: {
       width: "98%",
@@ -53,6 +54,8 @@ export default function Dashboard() {
     zoom: zoom
   };
 
+  console.log(data) 
+  
   const handleSubmit = (e) => {
     e.preventDefault();
     axios

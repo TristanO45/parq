@@ -11,8 +11,8 @@ const App = (props) => {
       <main>
         <Router>
           <Switch>
-            {/* <Route exact path="/" component={LandingPage} /> */}
-            <Route exact path="/" component={Dashboard} />
+            <Route exact path="/" component={LandingPage} />
+            <Route exact path="/dashboard" component={Dashboard} />
           </Switch>
         </Router>
       </main>

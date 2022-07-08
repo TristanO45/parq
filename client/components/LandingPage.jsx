@@ -1,6 +1,7 @@
 import * as React from "react";
-import { Link } from "react-router-dom";
+import { Link , Redirect, useHistory} from "react-router-dom";
 import "../styles.scss";
+import axios from "axios";
 import logo from "../assets/blueParq.png";
 import topoBackground from "../assets/topoBackground.png";
 import bookArchway from "../assets/book archway.png";
@@ -14,6 +15,7 @@ import { makeStyles } from "@material-ui/core";
 import SearchIcon from "@mui/icons-material/Search";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import TextField from "@mui/material/TextField";
+
 
 export default function LandingPage() {
   const useStyles = makeStyles(() => ({
@@ -41,25 +43,13 @@ export default function LandingPage() {
     listings: [],
   });
 
-  //   const handleSubmit = (e) => {
-  //     console.log(e);
-  //     setAddress(e);
+  let history = useHistory();
 
-  //     // axios
-  //     // .post("http://localhost:3000/api/all", {
-  //     //   address: address,
-  //     // })
-  //     // .then((res) => {
-  //     //   // console.log(res.results);
-  //     // })
-  //     // .catch((err) => {
-  //     //   console.log(`Error occured in useEffect: ${err}`);
-  //     // });
-  //   // console.log("location submission successful");
-  // };
-
-  const handleChange = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
+
+    history.push('/dashboard');
+
     console.log(address);
     axios
       .post("http://localhost:3000/api/all", {
@@ -72,7 +62,7 @@ export default function LandingPage() {
       .catch((err) => {
         console.log(`Error occured in useEffect: ${err}`);
       });
-    navigate("/dashboard");
+
   };
 
   const props = {
@@ -85,6 +75,7 @@ export default function LandingPage() {
         <Box sx={{ flexGrow: 1 }}>
           <Toolbar>
             <Button color="inherit" sx={{ flexGrow: 1 }}>
+            <Link to="/dashboard" style={{ textDecoration: 'none' }}>
               <Typography
                 variant="h6"
                 component="div"
@@ -96,6 +87,7 @@ export default function LandingPage() {
               >
                 book
               </Typography>
+              </ Link>
             </Button>
             <Button color="inherit" sx={{ flexGrow: 1 }}>
               <Typography
@@ -146,7 +138,7 @@ export default function LandingPage() {
       <div className="topoSearch" style={{ height: "350px" }}>
         <img className="topo" src={topoBackground} width="100%"></img>
         <div className="landingSearch">
-          <form onSubmit={handleChange} action="/dashboard">
+          <form onSubmit={handleSubmit} >
             <TextField
               id="standard-search"
               variant="outlined"
