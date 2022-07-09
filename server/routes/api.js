@@ -8,14 +8,14 @@ const cookieController = require("../controllers/cookieController");
 const googleRequestController = require("../controllers/googleController");
 
 // get requests for a single location - When user clicks a marker on the map
-router.get("/location", apiController.getLocation, (req, res, next) => {
+router.get("/location", apiController.getLocation, (req, res) => {
   return res.status(200).json(res.locals.location);
 });
 
 // get request for bookings
 router.get("/booking", cookieController.verifyCookie, 
 apiController.getBooking, 
-(req, res, next) => {
+(req, res) => {
   return res.status(200).json(res.locals.booking);
 });
 
@@ -25,7 +25,7 @@ router.post(
   "/all",
   googleRequestController.mapLocation,
   apiController.getAllLocation,
-  (req, res, next) => {
+  (req, res) => {
     return res.status(200).json(res.locals.result);
   }
 );
@@ -38,7 +38,7 @@ router.post(
   googleRequestController.mapLocation,
   apiController.createLocation, 
   apiController.getAllLocation,  
-  (req, res, next) => {
+  (req, res) => {
     return res.status(200).json(res.locals.result);
   }
 );
@@ -47,7 +47,7 @@ router.post(
 
 router.post("/booking", cookieController.verifyCookie, 
 apiController.createBooking, 
-(req, res, next) => {
+(req, res) => {
   return res.status(200).json(res.locals.booking);
 });
 

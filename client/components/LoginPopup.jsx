@@ -84,7 +84,7 @@ export default function LoginPopup() {
           
         </BootstrapDialogTitle> 
          <DialogContent dividers> 
-          <Login />
+          <Login handleClose={handleClose} />
         </DialogContent>
       </BootstrapDialog>
     </div>

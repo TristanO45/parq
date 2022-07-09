@@ -6,7 +6,7 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import SignupPopup from "./SignupPopup.jsx";
-import {Signup} from "./Signup.jsx";
+import { Signup } from "./Signup.jsx";
 
 export const Login = () => {
   const [createUsername, setCreateUsername] = useState("");
@@ -29,7 +29,7 @@ export const Login = () => {
       })
       .then((res) => {
         console.log("response from axios:", res);
-        sessionStorage.setItem("access_token", res.data)
+        sessionStorage.setItem("access_token", res.data);
         if (res.status === 201) {
           setLoggedIn(true);
         }
@@ -49,60 +49,55 @@ export const Login = () => {
   };
 
   if (!signUp) {
-  return (
-    <Box
-      component="form"
-      sx={{
-        "& .MuiTextField-root": { m: 1, width: "25ch" },
-      }}
-      noValidate
-      autoComplete="off"
-    >
-      <div>
-        <TextField
-          onChange={(e) => setCreateUsername(e.target.value)}
-          required
-          id="outlined-required"
-          label="Username"
-          defaultValue=""
-        />
-        <TextField
-          onChange={(e) => setCreatePassword(e.target.value)}
-          required
-          id="outlined-password-input"
-          label="Password"
-          type="password"
-          autoComplete="current-password"
-        />
-        <Button
-          onClick={handleLogin}
-          type="submit"
-          color="primary"
-          variant="contained"
-          // style={btnstyle}
-          fullWidth
-        >
-          {" "}
-          Log in
-        </Button>
-        <Button
-          onClick={signupPopup}
-          type="submit"
-          color="primary"
-          variant="contained"
-          // style={btnstyle}
-          fullWidth
-        >
-          {" "}
-          No account? Sign up
-        </Button>
-      </div>
-    </Box>
-  )}
-  else return (
-    <Signup />
-  );
-
-
-
+    return (
+      <Box
+        component="form"
+        sx={{
+          "& .MuiTextField-root": { m: 1, width: "25ch" },
+        }}
+        noValidate
+        autoComplete="off"
+      >
+        <div>
+          <TextField
+            onChange={(e) => setCreateUsername(e.target.value)}
+            required
+            id="outlined-required"
+            label="Username"
+            defaultValue=""
+          />
+          <TextField
+            onChange={(e) => setCreatePassword(e.target.value)}
+            required
+            id="outlined-password-input"
+            label="Password"
+            type="password"
+            autoComplete="current-password"
+          />
+          <Button
+            onClick={handleLogin}
+            type="submit"
+            color="primary"
+            variant="contained"
+            // style={btnstyle}
+            fullWidth
+          >
+            {" "}
+            Log in
+          </Button>
+          <Button
+            onClick={signupPopup}
+            type="submit"
+            color="primary"
+            variant="contained"
+            // style={btnstyle}
+            fullWidth
+          >
+            {" "}
+            No account? Sign up
+          </Button>
+        </div>
+      </Box>
+    );
+  } else return <Signup />;
 };
