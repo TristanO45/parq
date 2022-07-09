@@ -16,6 +16,8 @@ import SearchIcon from "@mui/icons-material/Search";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import TextField from "@mui/material/TextField";
 import LoginPopup from "./LoginPopup.jsx"
+import AboutPage from "./About.jsx"
+import Host from "./Host.jsx"
 
 
 export default function LandingPage() {
@@ -85,7 +87,8 @@ export default function LandingPage() {
               </Typography>
               </ Link>
             </Button>
-            <Button color="inherit" sx={{ flexGrow: 1 }}>
+            <Host />
+            {/* <Button color="inherit" sx={{ flexGrow: 1 }}>
               <Typography
                 variant="h6"
                 component="div"
@@ -97,11 +100,11 @@ export default function LandingPage() {
               >
                 host
               </Typography>
-            </Button>
+            </Button> */}
             <Button>
               <img className="websiteLogo" src={logo} />
             </Button>
-            <Button color="inherit" sx={{ flexGrow: 1 }}>
+            {/* <Button color="inherit" sx={{ flexGrow: 1 }}>
               <Typography
                 variant="h6"
                 component="div"
@@ -113,7 +116,8 @@ export default function LandingPage() {
               >
                 about
               </Typography>
-            </Button>
+            </Button> */}
+            <AboutPage />
               <LoginPopup />
           </Toolbar>
         </Box>

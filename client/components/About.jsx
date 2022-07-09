@@ -1,11 +1,7 @@
-// NOT BEING USED 
-
-
 import React from 'react';
 import { useState } from 'react';
 import PropTypes from 'prop-types';
 import Button from '@mui/material/Button';
-import "../styles.scss";
 import { styled } from '@mui/material/styles';
 import Dialog from '@mui/material/Dialog';
 import DialogTitle from '@mui/material/DialogTitle';
@@ -14,7 +10,6 @@ import DialogActions from '@mui/material/DialogActions';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import Typography from '@mui/material/Typography';
-import { Signup } from './Signup.jsx'
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   '& .MuiDialogContent-root': {
@@ -54,19 +49,35 @@ BootstrapDialogTitle.propTypes = {
   onClose: PropTypes.func.isRequired,
 };
 
-export default function SignupPopup() {
-  const [open, setOpen] = useState(true);
+export default function AboutPage() {
+  const [open, setOpen] = useState(false);
 
-  // const handleClickOpen = () => {
-  //   setOpen(true);
-  // };
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
   const handleClose = () => {
     setOpen(false);
   };
 
+//   const useStyles = makeStyles(() => ({
+//     textField: {
+//       width: "98%",
+//       height: "50%",
+//       marginLeft: "auto",
+//       marginRight: "auto",
+//       paddingBottom: 0,
+//       marginTop: 0,
+//       fontWeight: 500,
+//       borderRadius: 0,
+//     },
+//     input: {
+//       color: "white",
+//     },
+//   }));
+
   return (
-    <div>
-      <Button onClick={handleClickOpen} color="inherit" sx={{ flexGrow: 1 }}>
+    <div style={{ display: "flex", flexDirection: "column" }}>
+      <Button color="inherit" sx={{ flexGrow: 1 }} onClick={handleClickOpen}>
       <Typography
           variant="h6"
           component="div"
@@ -75,8 +86,8 @@ export default function SignupPopup() {
             fontWeight: "light",
             color: "#36454F",
           }}>
-          sign up
-        </Typography>
+        about        
+</Typography>
       </Button>
       <BootstrapDialog
         onClose={handleClose}
@@ -84,11 +95,24 @@ export default function SignupPopup() {
         open={open}
       >
         <BootstrapDialogTitle id="customized-dialog-title" onClose={handleClose}>
-          sign up
+          about
         </BootstrapDialogTitle>
         <DialogContent dividers>
-          <Signup />
+          <Typography gutterBottom>
+            Info about parq...
+          </Typography>
+          <Typography gutterBottom>
+            info about booker...
+          </Typography>
+          <Typography gutterBottom>
+            info about host...
+          </Typography>
         </DialogContent>
+        <DialogActions>
+          <Button autoFocus onClick={handleClose}>
+            close
+          </Button>
+        </DialogActions>
       </BootstrapDialog>
     </div>
   );

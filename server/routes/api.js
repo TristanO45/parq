@@ -13,7 +13,9 @@ router.get("/location", apiController.getLocation, (req, res, next) => {
 });
 
 // get request for bookings
-router.get("/booking", apiController.getBooking, cookieController.verifyCookie, (req, res, next) => {
+router.get("/booking", apiController.getBooking, 
+// cookieController.verifyCookie, 
+(req, res, next) => {
   return res.status(200).json(res.locals.booking);
 });
 
@@ -32,22 +34,25 @@ router.post(
 
 router.post(
   "/location",
-  googleRequestController.mapLocation,
-  apiController.createLocation,
   cookieController.verifyCookie,
+  googleRequestController.mapLocation,
+  apiController.createLocation, 
+  apiController.getAllLocation,  
   (req, res, next) => {
-    return res.status(200).json(res.locals.data);
+    return res.status(200).json(res.locals.result);
   }
 );
 
 // post rquests for new bookings
 
-router.post("/booking", apiController.createBooking, cookieController.verifyCookie, (req, res, next) => {
+router.post("/booking", apiController.createBooking, 
+// cookieController.verifyCookie, 
+(req, res, next) => {
   return res.status(200).json(res.locals.booking);
 });
 
-// router.post("/test", cookieController.verifyCookie, (req, res) => {
-//   return res.status(200).json("Logged in");
-// });
+router.post("/test", cookieController.verifyCookie, (req, res) => {
+  return res.status(200).json("Logged in");
+});
 
 module.exports = router;

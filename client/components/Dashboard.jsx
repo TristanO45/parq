@@ -15,6 +15,9 @@ import TextField from "@mui/material/TextField";
 import Maps from "./Map.jsx";
 import ParkingSpot from "./ParkingSpot.jsx";
 import { useEffect, useState } from "react";
+import LoginPopup from "./LoginPopup.jsx"
+import AboutPage from "./About.jsx"
+import Host from "./Host.jsx"
 
 export default function Dashboard(state) {
 
@@ -139,7 +142,7 @@ export default function Dashboard(state) {
                 book
               </Typography>
             </Button>
-            <Button color="inherit" sx={{ flexGrow: 1 }}>
+            {/* <Button color="inherit" sx={{ flexGrow: 1 }}>
               <Typography
                 variant="h6"
                 component="div"
@@ -151,13 +154,14 @@ export default function Dashboard(state) {
               >
                 host
               </Typography>
-            </Button>
+            </Button> */}
+            <Host />
             <Link to="/">
               <Button>
                 <img className="websiteLogo" src={logo} />
               </Button>
             </Link>
-            <Button color="inherit" sx={{ flexGrow: 1 }}>
+            {/* <Button color="inherit" sx={{ flexGrow: 1 }}>
               <Typography
                 variant="h6"
                 component="div"
@@ -169,8 +173,9 @@ export default function Dashboard(state) {
               >
                 about
               </Typography>
-            </Button>
-            <Button color="inherit" sx={{ flexGrow: 1 }}>
+            </Button> */}
+            <AboutPage />
+            {/* <Button color="inherit" sx={{ flexGrow: 1 }}>
               <Typography
                 variant="h6"
                 component="div"
@@ -182,7 +187,8 @@ export default function Dashboard(state) {
               >
                 sign in
               </Typography>
-            </Button>
+            </Button> */}
+            <LoginPopup />
           </Toolbar>
         </Box>
       </div>

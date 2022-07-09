@@ -1,6 +1,3 @@
-// NOT BEING USED 
-
-
 import React from 'react';
 import { useState } from 'react';
 import PropTypes from 'prop-types';
@@ -14,7 +11,7 @@ import DialogActions from '@mui/material/DialogActions';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import Typography from '@mui/material/Typography';
-import { Signup } from './Signup.jsx'
+import  HostForm  from './HostForm.jsx'
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   '& .MuiDialogContent-root': {
@@ -54,12 +51,12 @@ BootstrapDialogTitle.propTypes = {
   onClose: PropTypes.func.isRequired,
 };
 
-export default function SignupPopup() {
-  const [open, setOpen] = useState(true);
+export default function HostPopup() {
+  const [open, setOpen] = useState(false);
 
-  // const handleClickOpen = () => {
-  //   setOpen(true);
-  // };
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
   const handleClose = () => {
     setOpen(false);
   };
@@ -75,7 +72,7 @@ export default function SignupPopup() {
             fontWeight: "light",
             color: "#36454F",
           }}>
-          sign up
+          Host
         </Typography>
       </Button>
       <BootstrapDialog
@@ -84,10 +81,10 @@ export default function SignupPopup() {
         open={open}
       >
         <BootstrapDialogTitle id="customized-dialog-title" onClose={handleClose}>
-          sign up
-        </BootstrapDialogTitle>
-        <DialogContent dividers>
-          <Signup />
+          
+        </BootstrapDialogTitle> 
+         <DialogContent dividers> 
+          <HostForm />
         </DialogContent>
       </BootstrapDialog>
     </div>

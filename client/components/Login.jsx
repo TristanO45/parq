@@ -29,6 +29,7 @@ export const Login = () => {
       })
       .then((res) => {
         console.log("response from axios:", res);
+        sessionStorage.setItem("access_token", res.data)
         if (res.status === 201) {
           setLoggedIn(true);
         }
