@@ -81,6 +81,19 @@ export const Login = () => {
             variant="contained"
             // style={btnstyle}
             fullWidth
+            sx={{ 
+              border: ".75px solid #36454F",
+              color: "#F8F6F2",
+              '&:hover': {
+                backgroundColor: '#F8F6F2',
+                color: '#BBD1D1',
+                boxShadow: "none",
+            },
+              background: "#BBD1D1",
+              textTransform: "none",
+              boxShadow: "none",
+              marginBottom: ".5rem"
+              }}
           >
             {" "}
             Log in
@@ -92,9 +105,21 @@ export const Login = () => {
             variant="contained"
             // style={btnstyle}
             fullWidth
+            sx={{ 
+              border: ".75px solid #36454F",
+              color: "#F8F6F2",
+              '&:hover': {
+                backgroundColor: '#F8F6F2',
+                color: '#BBD1D1',
+                boxShadow: "none",
+            },
+              background: "#BBD1D1",
+              textTransform: "none",
+              boxShadow: "none",
+              }}
           >
             {" "}
-            No account? Sign up
+            no account? sign up
           </Button>
         </div>
       </Box>

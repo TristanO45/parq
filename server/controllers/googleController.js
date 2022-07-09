@@ -12,12 +12,13 @@ googleRequestController.mapLocation = (req, res, next) => {
       .get("https://maps.googleapis.com/maps/api/geocode/json?", {
         params: {
           address: address,
-          key: "AIzaSyBnmB6jh_VAGjxJwUBAep3545qwW_g-62Y",
+          key: "AIzaSyCnkJANv6eYZSSLD7AUl_lJkees8dysiTI",
         },
       })
       .then((response) => {
+        console.log("response results [0]:", response.data.results[0]);
         res.locals.data = response.data.results[0].geometry.location;
-        console.log("Google fetch information:", res.locals.data); // these are data from the API call
+        // console.log("Google fetch information:", res.data.data); // these are data from the API call
         return next();
       })
       .catch((err) => console.log(err));

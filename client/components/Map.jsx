@@ -12,7 +12,7 @@ const options = {
   styles: mapStyles,
 };
 
-export default function Map({ data , zoom}) {
+export default function Map({ data, zoom }) {
   const center = {
     lat: data.lat,
     lng: data.lng,
@@ -33,7 +33,7 @@ export default function Map({ data , zoom}) {
   });
 
   return (
-    <LoadScript googleMapsApiKey="AIzaSyBnmB6jh_VAGjxJwUBAep3545qwW_g-62Y">
+    <LoadScript googleMapsApiKey="AIzaSyCnkJANv6eYZSSLD7AUl_lJkees8dysiTI">
       <GoogleMap
         mapContainerStyle={containerStyle}
         center={center}

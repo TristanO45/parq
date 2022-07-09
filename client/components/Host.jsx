@@ -72,7 +72,7 @@ export default function HostPopup() {
             fontWeight: "light",
             color: "#36454F",
           }}>
-          Host
+          host
         </Typography>
       </Button>
       <BootstrapDialog

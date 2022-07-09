@@ -73,11 +73,11 @@ export default function Dashboard(state) {
   };
 
   useEffect(
-    (e) => {
+    () => {
       setData(state.location.data ? state.location.data : data);
-    },
-    [{ lat: 34.052235, lng: -118.243683, listings: [] }]
+    },[]
   );
+  // { lat: 34.052235, lng: -118.243683, listings: [] }
 
   const listings = data.listings;
 
@@ -136,7 +136,7 @@ export default function Dashboard(state) {
                 book
               </Typography>
             </Button>
-            {/* <Button color="inherit" sx={{ flexGrow: 1 }}>
+            <Button color="inherit" sx={{ flexGrow: 1 }}>
               <Typography
                 variant="h6"
                 component="div"
@@ -146,16 +146,15 @@ export default function Dashboard(state) {
                   color: "#36454F",
                 }}
               >
-                host
+                <Host />
               </Typography>
-            </Button> */}
-            <Host />
+            </Button>
             <Link to="/">
               <Button>
                 <img className="websiteLogo" src={logo} />
               </Button>
             </Link>
-            {/* <Button color="inherit" sx={{ flexGrow: 1 }}>
+            <Button color="inherit" sx={{ flexGrow: 1 }}>
               <Typography
                 variant="h6"
                 component="div"
@@ -165,11 +164,10 @@ export default function Dashboard(state) {
                   color: "#36454F",
                 }}
               >
-                about
+                <AboutPage />
               </Typography>
-            </Button> */}
-            <AboutPage />
-            {/* <Button color="inherit" sx={{ flexGrow: 1 }}>
+            </Button>
+            <Button color="inherit" sx={{ flexGrow: 1 }}>
               <Typography
                 variant="h6"
                 component="div"
@@ -179,10 +177,9 @@ export default function Dashboard(state) {
                   color: "#36454F",
                 }}
               >
-                sign in
+                 <LoginPopup />
               </Typography>
-            </Button> */}
-            <LoginPopup />
+            </Button>
           </Toolbar>
         </Box>
       </div>

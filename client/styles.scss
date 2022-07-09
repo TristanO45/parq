@@ -120,6 +120,7 @@ img.archway {
   z-index: 2;
 }
 
+/*
 .parkingSpotTile {
   width: 340px;
   height: 160px;
@@ -136,9 +137,27 @@ img.archway {
   position: relative;
   overflow: hidden;
   z-index: 2;
+}*/
+
+.parkingSpotTileOutter {
+  width: 340px;
+  height: 160px;
+  border-radius: 20px;
+  background: #B9D8D8;
+  border: .75px solid #36454F;
+  padding: 30px 30px 30px 30px;
+  overflow: hidden; 
+  margin-top: 1rem;
+  margin-left: .5rem; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  z-index: 2;
 }
 
-.parkingSpotTile:hover {
+.parkingSpotTileOutter:hover {
   transform: translateY(-2px);
   transition: all .3s ease-in-out;
 }
@@ -158,6 +177,7 @@ img.archway {
   margin: auto;
   opacity: 50%;
   top: -150px;
+  left: -10px;
   z-index: 1;
 }
 

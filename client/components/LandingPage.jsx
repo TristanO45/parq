@@ -58,7 +58,7 @@ export default function LandingPage() {
       .then((res) => {
         history.push({
           pathname: '/dashboard',
-          data:res.data})
+          data: res.data})
         })
       .catch((err) => {
         console.log(`Error occured in useEffect: ${err}`);
@@ -87,8 +87,7 @@ export default function LandingPage() {
               </Typography>
               </ Link>
             </Button>
-            <Host />
-            {/* <Button color="inherit" sx={{ flexGrow: 1 }}>
+            <Button color="inherit" sx={{ flexGrow: 1 }}>
               <Typography
                 variant="h6"
                 component="div"
@@ -98,13 +97,13 @@ export default function LandingPage() {
                   color: "#36454F",
                 }}
               >
-                host
+                <Host />
               </Typography>
-            </Button> */}
+            </Button>
             <Button>
               <img className="websiteLogo" src={logo} />
             </Button>
-            {/* <Button color="inherit" sx={{ flexGrow: 1 }}>
+            <Button color="inherit" sx={{ flexGrow: 1 }}>
               <Typography
                 variant="h6"
                 component="div"
@@ -114,11 +113,22 @@ export default function LandingPage() {
                   color: "#36454F",
                 }}
               >
-                about
+                <AboutPage />
               </Typography>
-            </Button> */}
-            <AboutPage />
-              <LoginPopup />
+            </Button>
+            <Button color="inherit" sx={{ flexGrow: 1 }}>
+              <Typography
+                variant="h6"
+                component="div"
+                sx={{
+                  textTransform: "none",
+                  fontWeight: "light",
+                  color: "#36454F",
+                }}
+              >
+                <LoginPopup />
+              </Typography>
+            </Button>
           </Toolbar>
         </Box>
       </div>

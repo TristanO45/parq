@@ -63,7 +63,8 @@ export default function ParkingSpotTest({ info, isVisible }) {
 
   return (
     <>
-      <div className="parkingSpotTile" onClick={onSpotClick}>
+    <div className="parkingSpotTileOutter" onClick={onSpotClick}>
+      <div  className="parkingSpotTile" onClick={onSpotClick}>
         <img className="tileTopo" src={topoBackground} width="100%"></img>
         <span>
           <h1 className="spotAddress">{address}</h1>
@@ -90,6 +91,7 @@ export default function ParkingSpotTest({ info, isVisible }) {
             <BookingForm hostName={hostName} address={address}/>
           </DialogContent>
         </BootstrapDialog>
+      </div>
       </div>
     </>
   );
