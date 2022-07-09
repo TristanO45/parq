@@ -18,27 +18,26 @@ cookieController = {};
 cookieController.setCookie = (req, res, next) => {
   const { username } = req.body;
   const token = generateAuthToken(username);
-  res.locals.access_token = token
+  res.locals.access_token = token;
   return next();
 };
 //authorization:
 //for FRONTEND: send token in Authorization header: `authorization: Bearer: ${accessToken}`
 
 cookieController.verifyCookie = (req, res, next) => {
-  const token = req.headers.authorization.split(' ')[1];
+  const token = req.headers.authorization.split(" ")[1];
   if (!token) {
     return res.status(403).send("Cannot verify user");
   }
   try {
-     jwt.verify(token, process.env.JWTPRIVATEKEY, (err, decoded) => {
+    jwt.verify(token, process.env.JWTPRIVATEKEY, (err, decoded) => {
       if (err) {
         //redirect
-        return next(err)
+        return next(err);
       }
-      res.locals.username = decoded.username
+      res.locals.username = decoded.username;
       return next();
-    })
-
+    });
   } catch (err) {
     return res.status(403).send("Cannot authorize user", err);
   }

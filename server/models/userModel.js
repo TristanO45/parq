@@ -14,6 +14,7 @@ const bookingSchema = new Schema({
   clientUsername: { type: String, required: true },
   hostUsername: { type: String, required: true },
   bookingDate: { type: String, required: true },
+  length: { type: Number, required: true },
   location: { type: String, required: true },
 });
 
@@ -25,13 +26,6 @@ const locationSchema = new Schema({
   size: { type: Number, required: true },
   coordinates: { lat: Number, lng: Number },
 });
-
-// userSchema.methods.generateAuthToken = function () {
-//   const token = jwt.sign({ _id: this._id }, process.env.JWTPRIVATEKEY, {
-//     expiresIn: "7d",
-//   });
-//   return token;
-// };
 
 const User = mongoose.model("user", userSchema);
 const Booking = mongoose.model("booking", bookingSchema);

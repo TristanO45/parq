@@ -15,12 +15,12 @@ import TextField from "@mui/material/TextField";
 import Maps from "./Map.jsx";
 import ParkingSpot from "./ParkingSpot.jsx";
 import { useEffect, useState } from "react";
-import LoginPopup from "./LoginPopup.jsx"
-import AboutPage from "./About.jsx"
-import Host from "./Host.jsx"
+import LoginPopup from "./LoginPopup.jsx";
+import AboutPage from "./About.jsx";
+import Host from "./Host.jsx";
+import ParkingSpotTest from "./ParkingSpotTest.jsx";
 
 export default function Dashboard(state) {
-
   const useStyles = makeStyles(() => ({
     textField: {
       width: "98%",
@@ -42,7 +42,7 @@ export default function Dashboard(state) {
   }));
 
   const classes = useStyles();
-  
+
   const [address, setAddress] = useState("");
   const [zoom, setZoom] = useState(10);
   const [data, setData] = useState({
@@ -51,15 +51,12 @@ export default function Dashboard(state) {
     listings: [],
   });
 
-
-
   const props = {
     data: data,
     isVisible: true,
-    zoom: zoom
+    zoom: zoom,
   };
 
-  
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
@@ -75,26 +72,23 @@ export default function Dashboard(state) {
       });
   };
 
-
-  useEffect((e) => {
-    setData(state.location.data ? state.location.data : data)
-  }, [
-    {lat: 34.052235,
-    lng: -118.243683,
-    listings: [],}
-  ]);
+  useEffect(
+    (e) => {
+      setData(state.location.data ? state.location.data : data);
+    },
+    [{ lat: 34.052235, lng: -118.243683, listings: [] }]
+  );
 
   const listings = data.listings;
 
-  const spotElems = listings.map((listings, i) => {
-
+  const spotElems = listings.map((ele, i) => {
     // convert latitude to longitude of the search to radians
     const radLatSearch = (Math.PI * data.lat) / 180;
     const radLngSearch = (Math.PI * data.lng) / 180;
 
     // convert latitude to longitude of the parking spot to radians
-    const radLatSpot = (Math.PI * listings.coordinates.lat) / 180;
-    const radLngSpot = (Math.PI * listings.coordinates.lng) / 180;
+    const radLatSpot = (Math.PI * ele.coordinates.lat) / 180;
+    const radLngSpot = (Math.PI * ele.coordinates.lng) / 180;
 
     // calculate the great circle
     var R = 6371; // km
@@ -110,7 +104,7 @@ export default function Dashboard(state) {
     var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
     var d = R * c;
 
-    console.log(d);
+    // console.log(d);
     // check if the distance is within 5 miles
     if (d > 8.04672) {
       props.isVisible = false;
@@ -120,7 +114,7 @@ export default function Dashboard(state) {
 
     // only return spots with isVisible set to true
     if (props.isVisible) {
-      return <ParkingSpot key={i} address={listings.address} {...props} />;
+      return <ParkingSpotTest key={i} info={ele} {...props} />;
     }
   });
 

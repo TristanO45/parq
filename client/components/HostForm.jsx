@@ -61,15 +61,6 @@ export default function HostForm() {
   //   }, 0);
   // }
 
-  // const locationSchema = new Schema({
-  //     hostName: { type: String, required: true, unique: true },
-  //     address: { type: String, required: true },
-  //     price: { type: Number, required: true },
-  //     options: { type: String, required: true },
-  //     size: { type: Number, required: true },
-  //     coordinates: { lat: Number, lng: Number },
-  //   });
-
   return (
     <Box
       component="form"

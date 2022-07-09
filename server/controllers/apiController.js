@@ -81,12 +81,16 @@ apiController.getAllLocation = (req, res, next) => {
 // "Create booking" controller
 apiController.createBooking = (req, res, next) => {
   //get input from user request (TBD)
-  const { username, hostName, date, location } = req.body;
+  const username = res.locals.username
+  const { hostUsername, bookingDate, length, location } = req.body;
+  console.log("username:", username)
+  console.log("req", req.body)
   Booking.create(
     {
       clientUsername: username,
-      hostUsername: hostName,
-      bookingDate: date,
+      hostUsername: hostUsername,
+      bookingDate: bookingDate,
+      length: length,
       location,
     },
     (err, docs) => {

@@ -13,8 +13,8 @@ router.get("/location", apiController.getLocation, (req, res, next) => {
 });
 
 // get request for bookings
-router.get("/booking", apiController.getBooking, 
-// cookieController.verifyCookie, 
+router.get("/booking", cookieController.verifyCookie, 
+apiController.getBooking, 
 (req, res, next) => {
   return res.status(200).json(res.locals.booking);
 });
@@ -45,8 +45,8 @@ router.post(
 
 // post rquests for new bookings
 
-router.post("/booking", apiController.createBooking, 
-// cookieController.verifyCookie, 
+router.post("/booking", cookieController.verifyCookie, 
+apiController.createBooking, 
 (req, res, next) => {
   return res.status(200).json(res.locals.booking);
 });
