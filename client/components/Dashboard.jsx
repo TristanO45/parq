@@ -75,6 +75,7 @@ export default function Dashboard(state) {
   useEffect(
     () => {
       setData(state.location.data ? state.location.data : data);
+      setZoom(13);
     },[]
   );
   // { lat: 34.052235, lng: -118.243683, listings: [] }

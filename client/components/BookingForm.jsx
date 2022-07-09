@@ -107,7 +107,7 @@ export const BookingForm = ({ hostName, address }) => {
       <Box
         component="form"
         sx={{
-          "& .MuiTextField-root": { m: 1, width: "25ch" },
+          "& .MuiTextField-root": { m: 1, width: "20ch" },
         }}
         noValidate
         autoComplete="off"
@@ -134,7 +134,24 @@ export const BookingForm = ({ hostName, address }) => {
             color="primary"
             variant="contained"
             // style={btnstyle}
-            fullWidth
+            sx={{ 
+              border: ".75px solid #36454F",
+              color: '#BBD1D1',
+              '&:hover': {
+                backgroundColor: '#BBD1D1',
+                color: '#F8F6F2',
+                boxShadow: "none",
+            },
+              background: '#F8F6F2',
+              textTransform: "none",
+              boxShadow: "none",
+              width: "84%",
+              marginBottom: ".5rem",
+              marginLeft: ".2rem",
+              paddingTop: ".75rem",
+              paddingBottom: ".75rem",
+              fontWeight: "bold"
+              }}
           >
             {" "}
             Book

@@ -12,6 +12,7 @@ import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import Typography from '@mui/material/Typography';
 import  HostForm  from './HostForm.jsx'
+import logo from "../assets/blueParq.png";
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   '& .MuiDialogContent-root': {
@@ -26,8 +27,13 @@ const BootstrapDialogTitle = (props) => {
   const { children, onClose, ...other } = props;
 
   return (
-    <DialogTitle sx={{ m: 0, p: 2 }} {...other}>
+    <DialogTitle sx={{ 
+      position: "relative",
+      marginLeft: "10rem",
+      width: "50%",
+      height: "auto"}} {...other}>
       {children}
+      <img className="websiteLogo" src={logo} />
       {onClose ? (
         <IconButton
           aria-label="close"
@@ -36,7 +42,7 @@ const BootstrapDialogTitle = (props) => {
             position: 'absolute',
             right: 8,
             top: 8,
-            color: (theme) => theme.palette.grey[500],
+            color: '#BBD1D1',
           }}
         >
           <CloseIcon />

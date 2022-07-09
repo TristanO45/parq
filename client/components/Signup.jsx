@@ -60,7 +60,7 @@ export const Signup = () => {
       noValidate
       autoComplete="off"
     >
-      <div>
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr'}}>
         <TextField
           onChange={(e) => setCreateFirstname(e.target.value)}
           required
@@ -96,22 +96,31 @@ export const Signup = () => {
           color="primary"
           variant="contained"
           // style={btnstyle}
-          fullWidth
+          sx={{ 
+            border: ".75px solid #36454F",
+            color: '#BBD1D1',
+            '&:hover': {
+              backgroundColor: '#BBD1D1',
+              color: '#F8F6F2',
+              boxShadow: "none",
+          },
+            background: '#F8F6F2',
+            textTransform: "none",
+            boxShadow: "none",
+            width: "92%",
+            marginLeft: ".5rem",
+            marginTop: ".5rem",
+            paddingTop: ".75rem",
+            paddingBottom: ".75rem",
+            fontWeight: "bold",
+            marginBottom: ".5rem",
+            }}
         >
           {" "}
-          Create account and Sign in
+          create account
         </Button>
       </div>
     </Box>
   );
 };
 
-// //Mike's Option:
-
-// const [user, setUser] = useState({
-//     firstname: "",
-//     lastname: "",
-//     username: ""
-//   });
-
-// useEffect

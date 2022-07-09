@@ -12,6 +12,7 @@ import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 import Typography from "@mui/material/Typography";
 import { BookingForm } from "./BookingForm.jsx";
+import logo from "../assets/blueParq.png";
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   "& .MuiDialogContent-root": {
@@ -26,8 +27,13 @@ const BootstrapDialogTitle = (props) => {
   const { children, onClose, ...other } = props;
 
   return (
-    <DialogTitle sx={{ m: 0, p: 2 }} {...other}>
+    <DialogTitle sx={{ 
+      position: "relative",
+      marginLeft: "10rem",
+      width: "50%",
+      height: "auto"}} {...other}>  
       {children}
+      <img className="websiteLogo" src={logo} />
       {onClose ? (
         <IconButton
           aria-label="close"
@@ -36,7 +42,8 @@ const BootstrapDialogTitle = (props) => {
             position: "absolute",
             right: 8,
             top: 8,
-            color: (theme) => theme.palette.grey[500],
+            marginLeft: "3rem",
+            color: "#BBD1D1",
           }}
         >
           <CloseIcon />
@@ -80,14 +87,28 @@ export default function ParkingSpotTest({ info, isVisible }) {
             id="customized-dialog-title"
             onClose={handleClose}
           ></BootstrapDialogTitle>
-          <DialogContent dividers>
-            {address}
-            <br></br>
-            {options}
-            <br></br>
-            {price}
-            <br></br>
-            {size}
+          <DialogContent dividers sx={{
+            fontFamily: "Helvetica",
+            fontWeight: "thin",
+            textAlign: "center"}}>
+              <div style={{fontSize: "x-large", fontWeight: "bold", color: "#BBD1D1"}}>
+              ${price}/hr
+              </div>
+              <br></br>
+              <div style={{fontWeight: "lighter"}}>
+              {address} 
+              </div>
+            {size === 1 && (
+              <div style={{fontWeight: "lighter"}}>
+                {options} | {size} car
+                </div>
+              )}
+               {size > 1 && (
+              <div style={{fontWeight: "lighter"}}>
+                {options} | {size} cars
+                </div>
+              )}
+            {/* ${price}/hr | {options} | {size} cars */}
             <BookingForm hostName={hostName} address={address}/>
           </DialogContent>
         </BootstrapDialog>

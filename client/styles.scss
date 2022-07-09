@@ -120,25 +120,6 @@ img.archway {
   z-index: 2;
 }
 
-/*
-.parkingSpotTile {
-  width: 340px;
-  height: 160px;
-  border-radius: 20px;
-  background: #B9D8D8;
-  border: .75px solid #36454F;
-  padding: 30px 30px 30px 30px;
-  overflow: hidden; 
-  margin-top: 1rem;
-  margin-left: .5rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  overflow: hidden;
-  z-index: 2;
-}*/
-
 .parkingSpotTileOutter {
   width: 340px;
   height: 160px;
@@ -188,6 +169,3 @@ img.archway {
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr 1fr;
 }
-
-
-

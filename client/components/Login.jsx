@@ -58,21 +58,24 @@ export const Login = () => {
         noValidate
         autoComplete="off"
       >
-        <div>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr'}}>
           <TextField
             onChange={(e) => setCreateUsername(e.target.value)}
             required
             id="outlined-required"
-            label="Username"
+            label="username"
             defaultValue=""
           />
           <TextField
             onChange={(e) => setCreatePassword(e.target.value)}
             required
             id="outlined-password-input"
-            label="Password"
+            label="password"
             type="password"
             autoComplete="current-password"
+            sx={{
+              
+            }}
           />
           <Button
             onClick={handleLogin}
@@ -83,20 +86,26 @@ export const Login = () => {
             fullWidth
             sx={{ 
               border: ".75px solid #36454F",
-              color: "#F8F6F2",
+              color: '#BBD1D1',
               '&:hover': {
-                backgroundColor: '#F8F6F2',
-                color: '#BBD1D1',
+                backgroundColor: '#BBD1D1',
+                color: '#F8F6F2',
                 boxShadow: "none",
             },
-              background: "#BBD1D1",
+              background: '#F8F6F2',
               textTransform: "none",
               boxShadow: "none",
-              marginBottom: ".5rem"
+              marginTop: ".5rem",
+              marginBottom: ".5rem",
+              width: "92%",
+              marginLeft: ".5rem",
+              paddingTop: ".75rem",
+              paddingBottom: ".75rem",
+              fontWeight: "bold"
               }}
           >
             {" "}
-            Log in
+            log in
           </Button>
           <Button
             onClick={signupPopup}
@@ -104,18 +113,23 @@ export const Login = () => {
             color="primary"
             variant="contained"
             // style={btnstyle}
-            fullWidth
             sx={{ 
               border: ".75px solid #36454F",
-              color: "#F8F6F2",
+              color: '#BBD1D1',
               '&:hover': {
-                backgroundColor: '#F8F6F2',
-                color: '#BBD1D1',
+                backgroundColor: '#BBD1D1',
+                color: '#F8F6F2',
                 boxShadow: "none",
             },
-              background: "#BBD1D1",
+              background: '#F8F6F2',
               textTransform: "none",
               boxShadow: "none",
+              width: "92%",
+              marginBottom: ".5rem",
+              marginLeft: ".5rem",
+              paddingTop: ".75rem",
+              paddingBottom: ".75rem",
+              fontWeight: "bold"
               }}
           >
             {" "}

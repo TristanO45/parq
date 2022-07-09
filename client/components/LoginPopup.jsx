@@ -26,7 +26,17 @@ const BootstrapDialogTitle = (props) => {
   const { children, onClose, ...other } = props;
 
   return (
-    <DialogTitle sx={{ m: 0, p: 2 }} {...other}>
+    <DialogTitle sx={{ 
+      position: "relative",
+      marginLeft: "1.7rem",
+      marginTop: "1rem",
+      p: 2 ,
+      color:"#BBD1D1",
+      fontSize: "800",
+      fontWeight: "bold"}} {...other}>
+      <div className='closeIcon' sx={{ padding: "5px" }}>
+      welcome to parq
+      </div>
       {children}
       {onClose ? (
         <IconButton
@@ -35,7 +45,7 @@ const BootstrapDialogTitle = (props) => {
           sx={{
             position: 'absolute',
             right: 8,
-            top: 3,
+            top: 8,
             color: "#BBD1D1",
           }}
         >
