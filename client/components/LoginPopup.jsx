@@ -35,8 +35,8 @@ const BootstrapDialogTitle = (props) => {
           sx={{
             position: 'absolute',
             right: 8,
-            top: 8,
-            color: (theme) => theme.palette.grey[500],
+            top: 2,
+            color: "#BBD1D1",
           }}
         >
           <CloseIcon />
@@ -62,7 +62,7 @@ export default function LoginPopup() {
   };
 
   return (
-    <div>
+    <div className='popupOutterDiv'>
       <Button onClick={handleClickOpen} color="inherit" sx={{ flexGrow: 1 }}>
       <Typography
           variant="h6"

@@ -54,6 +54,7 @@ export const Login = () => {
         component="form"
         sx={{
           "& .MuiTextField-root": { m: 1, width: "25ch" },
+          borderRadius: "20px"
         }}
         noValidate
         autoComplete="off"
@@ -81,6 +82,13 @@ export const Login = () => {
             variant="contained"
             // style={btnstyle}
             fullWidth
+            sx={{ 
+              border: ".75px solid #36454F",
+              color: "#F8F6F2",
+              background: "#BBD1D1",
+              textTransform: "none",
+              boxShadow: "none",
+              marginBottom: ".5rem"}}
           >
             {" "}
             Log in
@@ -91,10 +99,16 @@ export const Login = () => {
             color="primary"
             variant="contained"
             // style={btnstyle}
+            sx={{ 
+              border: ".75px solid #36454F",
+              color: "#F8F6F2",
+              background: "#BBD1D1",
+              textTransform: "none",
+              boxShadow: "none"}}
             fullWidth
           >
             {" "}
-            No account? Sign up
+            no account? sign up
           </Button>
         </div>
       </Box>
