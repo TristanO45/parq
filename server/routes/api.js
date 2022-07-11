@@ -6,6 +6,7 @@ const apiController = require("../controllers/apiController");
 const loginController = require("../controllers/loginController");
 const cookieController = require("../controllers/cookieController");
 const googleRequestController = require("../controllers/googleController");
+const sizeFilterController = require("../controllers/sizeFilterController")
 
 // get requests for a single location - When user clicks a marker on the map
 router.get("/location", apiController.getLocation, (req, res) => {
@@ -55,6 +56,10 @@ apiController.createBooking,
 // router.post("/price", apiController.getPriceLocation, (req,res,next)=> {
 //   return res.status(200).json();
 // });
+
+router.post('/size', sizeFilterController.filterSize, (req, res) => {
+  return res.status(200).json(res.locals.filteredSizes);
+})
 
 // router.post("/test", cookieController.verifyCookie, (req, res) => {
 //   return res.status(200).json("Logged in");

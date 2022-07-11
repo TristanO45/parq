@@ -19,6 +19,7 @@ import LoginPopup from "./LoginPopup.jsx";
 import AboutPage from "./About.jsx";
 import Host from "./Host.jsx";
 import ParkingSpotTest from "./ParkingSpotTest.jsx";
+import Size from "./Size.jsx"
 
 export default function Dashboard(state) {
   const useStyles = makeStyles(() => ({
@@ -236,7 +237,7 @@ export default function Dashboard(state) {
                 color: "#36454F",
               }}
             >
-              size
+              <Size/>
             </Typography>
           </Button>
           <Button className="filterPrice" color="inherit" sx={{ width: 10 }}>
