@@ -59,21 +59,21 @@ export default function AboutPage() {
     setOpen(false);
   };
 
-//   const useStyles = makeStyles(() => ({
-//     textField: {
-//       width: "98%",
-//       height: "50%",
-//       marginLeft: "auto",
-//       marginRight: "auto",
-//       paddingBottom: 0,
-//       marginTop: 0,
-//       fontWeight: 500,
-//       borderRadius: 0,
-//     },
-//     input: {
-//       color: "white",
-//     },
-//   }));
+  // const useStyles = makeStyles(() => ({
+  //   textField: {
+  //     width: "98%",
+  //     height: "50%",
+  //     marginLeft: "auto",
+  //     marginRight: "auto",
+  //     paddingBottom: 0,
+  //     marginTop: 0,
+  //     fontWeight: 500,
+  //     borderRadius: 0,
+  //   },
+  //   input: {
+  //     color: "white",
+  //   },
+  // }));
 
   return (
     <div style={{ display: "flex", flexDirection: "column" }}>
